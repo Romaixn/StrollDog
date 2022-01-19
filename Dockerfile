@@ -6,6 +6,16 @@
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 ARG PHP_VERSION=8.1
 ARG CADDY_VERSION=2
+ARG NODE_VERSION=17
+
+FROM node:${NODE_VERSION}-alpine AS symfony_node
+WORKDIR /srv/app
+COPY package*.json ./
+RUN npm install
+## If you are building your code for production
+# RUN npm ci --only=production
+COPY . .
+RUN npm run build
 
 # "php" stage
 FROM php:${PHP_VERSION}-fpm-alpine AS symfony_php
@@ -98,6 +108,12 @@ RUN composer create-project "${SKELETON} ${SYMFONY_VERSION}" . --stability=$STAB
 	composer clear-cache
 
 ###> recipes ###
+###> doctrine/doctrine-bundle ###
+RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
+	docker-php-ext-install -j$(nproc) pdo_pgsql; \
+	apk add --no-cache --virtual .pgsql-rundeps so:libpq.so.5; \
+	apk del .pgsql-deps
+###< doctrine/doctrine-bundle ###
 ###< recipes ###
 
 COPY . .
@@ -110,6 +126,8 @@ RUN set -eux; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync
 VOLUME /srv/app/var
+
+COPY --from=symfony_node /srv/app/public/build public/build
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
