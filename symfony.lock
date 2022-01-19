@@ -178,6 +178,9 @@
     "symfony/doctrine-bridge": {
         "version": "v6.0.2"
     },
+    "symfony/doctrine-messenger": {
+        "version": "v6.0.2"
+    },
     "symfony/dotenv": {
         "version": "v6.0.2"
     },
@@ -503,6 +506,9 @@
     },
     "symfony/yaml": {
         "version": "v6.0.2"
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.7.0"
     },
     "twig/extra-bundle": {
         "version": "v3.3.7"
