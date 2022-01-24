@@ -42,7 +42,7 @@ class Place
     #[ORM\Column(type: 'float', nullable: true)]
     private $ratings;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $influx;
 
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'places')]
