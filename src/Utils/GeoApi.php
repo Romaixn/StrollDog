@@ -14,9 +14,6 @@ class GeoApi
 
     public function getFromAddress(string $address, string $postalCode): array
     {
-        $longitude = '';
-        $latitude = '';
-
         $address = urlencode($address);
 
         $response = $this->client->request('GET', "?q=${address}&postcode=${postalCode}&limit=1");
