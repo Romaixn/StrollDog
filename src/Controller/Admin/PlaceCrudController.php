@@ -56,7 +56,7 @@ class PlaceCrudController extends AbstractCrudController
             'Peu de monde' => 'low',
             'Beaucoup de monde' => 'High',
         ])->hideOnIndex();
-        yield AssociationField::new('types')->setFormTypeOption('by_reference', false);
+        yield AssociationField::new('types')->setFormTypeOption('by_reference', false)->hideOnIndex();
         yield NumberField::new('ratings')->hideOnIndex();
 
         yield FormField::addPanel('Location');
