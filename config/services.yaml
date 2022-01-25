@@ -36,3 +36,9 @@ services:
 
               # you can also restrict listeners to a specific Doctrine connection
               connection: 'default'
+
+when@test:
+    services:
+        test.user_password_hasher:
+            alias: 'security.user_password_hasher'
+            public: true

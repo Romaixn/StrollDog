@@ -31,9 +31,6 @@ class PlaceEntityTest extends KernelTestCase
 
         $this->assertEquals(-2.340983, $place->getLongitude());
         $this->assertEquals(47.258811, $place->getLatitude());
-
-        $this->entityManager->remove($place);
-        $this->entityManager->flush();
     }
 
     protected function tearDown(): void
