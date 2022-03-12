@@ -22,9 +22,9 @@ class PlaceFixtures extends Fixture
             ->setName('Foret');
         $manager->persist($foret);
 
-        $champs = (new Type())
-            ->setName('Champs');
-        $manager->persist($champs);
+        $champ = (new Type())
+            ->setName('Champ');
+        $manager->persist($champ);
 
         for ($i=0; $i < 100; $i++) {
             $place = (new Place())
@@ -38,7 +38,7 @@ class PlaceFixtures extends Fixture
                 ->setLatitude($faker->latitude())
                 ->setRatings($faker->randomFloat(2, 0, 5))
                 ->setInflux($faker->randomElement(['Peu de monde', 'Modéré', 'Beaucoup de monde']))
-                ->addType($faker->randomElement([$ville, $foret, $champs]))
+                ->addType($faker->randomElement([$ville, $foret, $champ]))
             ;
 
             $manager->persist($place);
