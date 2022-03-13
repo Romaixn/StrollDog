@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Place;
+use App\Form\PictureType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -12,7 +13,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -52,6 +55,8 @@ class PlaceCrudController extends AbstractCrudController
         yield FormField::addPanel('Description');
         yield TextField::new('title');
         yield TextEditorField::new('description')->hideOnIndex();
+        yield CollectionField::new('pictures')->setEntryType(PictureType::class)->onlyOnForms();
+        yield CollectionField::new('pictures')->setTemplatePath('admin/fields/images.html.twig')->onlyOnDetail();
         yield ChoiceField::new('influx')->setChoices([
             'Peu de monde' => 'low',
             'Beaucoup de monde' => 'High',

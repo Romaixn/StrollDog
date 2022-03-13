@@ -48,9 +48,13 @@ class Place
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'places')]
     private $types;
 
+    #[ORM\OneToMany(mappedBy: 'place', targetEntity: Picture::class, orphanRemoval: true, cascade:["persist"])]
+    private $pictures;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,5 +212,35 @@ class Place
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection<int, Picture>
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getPlace() === $this) {
+                $picture->setPlace(null);
+            }
+        }
+
+        return $this;
     }
 }

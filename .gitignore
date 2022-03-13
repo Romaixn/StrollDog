@@ -28,3 +28,5 @@ yarn-error.log
 
 public/uploads/images/users/*
 !public/uploads/images/users/.gitkeep
+public/uploads/images/places/*
+!public/uploads/images/places/.gitkeep

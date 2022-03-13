@@ -20,7 +20,10 @@ class GeoApi
         $data = $response->toArray(true);
 
         if (empty($data['features'])) {
-            throw new \Exception('No results found');
+            return [
+                'longitude' => '',
+                'latitude' => ''
+            ];
         }
 
         $longitude = $data['features'][0]['geometry']['coordinates'][0];

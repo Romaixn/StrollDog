@@ -6,6 +6,7 @@
 parameters:
     app.notifications.email_sender: no-reply@strolldog.com
     app.path.user_images: /uploads/images/users
+    app.path.place_images: /uploads/images/places
 
 services:
     # default configuration for services in *this* file
