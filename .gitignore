@@ -25,3 +25,6 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+public/uploads/images/users/*
+!public/uploads/images/users/.gitkeep
