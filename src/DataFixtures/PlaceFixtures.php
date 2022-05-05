@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Enum\Influx;
 use Faker;
 use App\Entity\Place;
 use App\Entity\Type;
@@ -37,7 +38,7 @@ class PlaceFixtures extends Fixture
                 ->setLongitude($faker->longitude())
                 ->setLatitude($faker->latitude())
                 ->setRatings($faker->randomFloat(2, 0, 5))
-                ->setInflux($faker->randomElement(['Peu de monde', 'Modéré', 'Beaucoup de monde']))
+                ->setInflux($faker->randomElement([Influx::Low->name, Influx::Medium->name, Influx::High->name]))
                 ->addType($faker->randomElement([$ville, $foret, $champ]))
             ;
 
