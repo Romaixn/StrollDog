@@ -6,7 +6,7 @@
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 ARG PHP_VERSION=8.1
 ARG CADDY_VERSION=2
-ARG NODE_VERSION=17
+ARG NODE_VERSION=18
 
 FROM node:${NODE_VERSION}-alpine AS symfony_node
 WORKDIR /srv/app
