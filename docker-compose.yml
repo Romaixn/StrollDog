@@ -72,6 +72,29 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
+  consumer:
+    build:
+      context: .
+      target: symfony_php
+    entrypoint: docker-php-entrypoint
+    command: bin/console messenger:consume
+    depends_on:
+      - database
+    restart: unless-stopped
+    volumes:
+      - ./:/srv/app:rw,cached
+      - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
+      # if you develop on Linux, you may use a bind-mounted host directory instead
+      # - ./api/var:/srv/api/var:rw
+    environment:
+      APP_ENV: dev
+    healthcheck:
+      test: ['CMD', 'ps', 'aux', '|', 'egrep', '"\d+:\d+ php bin/console messenger:consume"']
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+
 volumes:
   php_socket:
   caddy_data:
