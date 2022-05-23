@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Domain\Security\User;
+use App\Domain\Security\Entity\User;
 use App\Domain\Place\Entity\Type;
 use App\Domain\Place\Entity\Place;
 use Symfony\Component\HttpFoundation\Response;

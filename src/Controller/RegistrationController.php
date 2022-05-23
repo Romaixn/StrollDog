@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Domain\Security\User;
+use App\Domain\Security\Entity\User;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Domain\Security\User;
+use App\Domain\Security\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;

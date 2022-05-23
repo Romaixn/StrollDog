@@ -2,7 +2,7 @@
 
 namespace App\Domain\Security\Repository;
 
-use App\Domain\Security\User;
+use App\Domain\Security\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
