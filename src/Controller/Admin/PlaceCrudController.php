@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Enum\Influx;
-use App\Entity\Place;
-use App\Form\PictureType;
+use App\Domain\Place\Enum\Influx;
+use App\Domain\Place\Entity\Place;
+use App\Domain\Place\Form\PictureType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
