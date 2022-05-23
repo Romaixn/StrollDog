@@ -10,18 +10,13 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            Organization:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/Organization/Entity'
-                prefix: 'App\Domain\Organization\Entity'
-                alias: Organization
-            Place:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/Place/Entity'
-                prefix: 'App\Domain\Place\Entity'
-                alias: Place
             Security:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Domain/Security/Entity'
                 prefix: 'App\Domain\Security\Entity'
                 alias: Security
+            Place:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Domain/Place/Entity'
+                prefix: 'App\Domain\Place\Entity'
+                alias: Place
