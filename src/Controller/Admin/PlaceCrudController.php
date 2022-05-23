@@ -41,6 +41,8 @@ class PlaceCrudController extends AbstractCrudController
     {
         return $filters
             ->add(EntityFilter::new('types'))
+            ->add('influx')
+            ->add('ratings')
         ;
     }
 
