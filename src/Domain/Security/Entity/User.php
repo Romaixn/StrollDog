@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Security;
+namespace App\Domain\Security\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
