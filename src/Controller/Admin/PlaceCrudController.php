@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Enum\Influx;
-use App\Entity\Place;
-use App\Form\PictureType;
+use App\Domain\Place\Enum\Influx;
+use App\Domain\Place\Entity\Place;
+use App\Domain\Place\Form\PictureType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -41,6 +41,8 @@ class PlaceCrudController extends AbstractCrudController
     {
         return $filters
             ->add(EntityFilter::new('types'))
+            ->add('influx')
+            ->add('ratings')
         ;
     }
 
@@ -58,6 +60,11 @@ class PlaceCrudController extends AbstractCrudController
             $influxChoices[$influx->value] = $influx->name;
         }
 
+        $influxChoicesColors = [];
+        foreach (Influx::cases() as $influx) {
+            $influxChoicesColors[$influx->name] = $influx->color();
+        }
+
         yield FormField::addPanel('Description');
         yield TextField::new('title');
         yield TextEditorField::new('description')->hideOnIndex();
@@ -65,7 +72,7 @@ class PlaceCrudController extends AbstractCrudController
         yield CollectionField::new('pictures')->setTemplatePath('admin/fields/images.html.twig')->onlyOnDetail();
         yield ChoiceField::new('influx')
             ->setChoices($influxChoices)
-            ->renderAsBadges(true);
+            ->renderAsBadges($influxChoicesColors);
         yield AssociationField::new('types')->setFormTypeOption('by_reference', false)->hideOnIndex();
         yield NumberField::new('ratings')->hideOnIndex();
 

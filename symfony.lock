@@ -130,6 +130,9 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "masterminds/html5": {
+        "version": "2.7.5"
+    },
     "monolog/monolog": {
         "version": "2.3.5"
     },
@@ -491,9 +494,6 @@
         "version": "v1.24.0"
     },
     "symfony/polyfill-mbstring": {
-        "version": "v1.24.0"
-    },
-    "symfony/polyfill-php81": {
         "version": "v1.24.0"
     },
     "symfony/polyfill-uuid": {

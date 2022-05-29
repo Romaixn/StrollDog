@@ -2,7 +2,7 @@
 
 namespace App\Tests\Entity;
 
-use App\Entity\Place;
+use App\Domain\Place\Entity\Place;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PlaceEntityTest extends KernelTestCase

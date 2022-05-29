@@ -2,7 +2,7 @@
 
 namespace App\Tests\Utils;
 
-use App\Utils\GeoApi;
+use App\Domain\Place\Service\GeoApi\DataGouv\GeoApi;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class GeoApiTest extends KernelTestCase
