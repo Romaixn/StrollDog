@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "147e2aca53e100a3e7de9252820f8e0d",
+    "content-hash": "744b973b89d9f1e98e9cd939aede6f10",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2307,6 +2307,57 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "rompetomp/inertia-bundle",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rompetomp/inertia-bundle.git",
+                "reference": "ce025737f061a1ed7924766467d9b619fb285196"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rompetomp/inertia-bundle/zipball/ce025737f061a1ed7924766467d9b619fb285196",
+                "reference": "ce025737f061a1ed7924766467d9b619fb285196",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8",
+                "symfony/config": "^4.4|^5.1.7|^6.0",
+                "symfony/dependency-injection": "^4.4|^5.1.7|^6.0",
+                "symfony/http-kernel": "^4.4|^5.1.7|^6.0",
+                "twig/twig": "^2.12|^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "symfony/phpunit-bridge": "^4.4|^5.1.7|^6.0",
+                "symfony/property-access": "^5.1|^6.0",
+                "symfony/serializer": "^5.1|^6.0",
+                "symfony/var-dumper": "^4.4|^5.1.7|^6.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Rompetomp\\InertiaBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hannes Vermeire",
+                    "email": "hannesvermeire@gmail.com"
+                }
+            ],
+            "description": "A Symfony adapter for Inertia.js",
+            "support": {
+                "issues": "https://github.com/rompetomp/inertia-bundle/issues",
+                "source": "https://github.com/rompetomp/inertia-bundle/tree/v2.2.0"
+            },
+            "time": "2022-01-02T13:44:00+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",

@@ -207,6 +207,9 @@
     "psr/log": {
         "version": "3.0.0"
     },
+    "rompetomp/inertia-bundle": {
+        "version": "v2.2.0"
+    },
     "sebastian/cli-parser": {
         "version": "1.0.1"
     },
