@@ -1,15 +1,18 @@
 <?php
 namespace App\Domain\Place\EventListener;
 
+use App\Action\Localize;
 use Doctrine\ORM\Events;
 use App\Domain\Place\Entity\Place;
-use App\Domain\Place\Service\GeoApi\GeoApiInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use App\Domain\Place\Service\GeoApi\GeoApiInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+
 
 class PlaceListener implements EventSubscriberInterface
 {
-    public function __construct(private GeoApiInterface $geoApi)
+    public function __construct(private MessageBusInterface $bus)
     {
     }
 
@@ -45,10 +48,7 @@ class PlaceListener implements EventSubscriberInterface
 
         $entityManager = $args->getObjectManager();
 
-        $geo = $this->geoApi->getFromAddress($entity->getAddress(), $entity->getPostalCode());
-
-        $entity->setLongitude($geo->getLongitude());
-        $entity->setLatitude($geo->getLatitude());
+        $this->bus->dispatch(new Localize($entity));
 
         $entityManager->persist($entity);
         $entityManager->flush();
