@@ -2,7 +2,7 @@
 
 namespace App\Tests\Utils;
 
-use App\Domain\Place\Service\GeoApi\DataGouv\GeoApi;
+use App\Domain\Place\Service\GeoApi\GeoApiInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class GeoApiTest extends KernelTestCase
@@ -14,14 +14,14 @@ class GeoApiTest extends KernelTestCase
         self::bootKernel();
 
         /** @var GeoApi $geoApi */
-        $this->geoApi = static::getContainer()->get(GeoApi::class);
+        $this->geoApi = static::getContainer()->get(GeoApiInterface::class);
     }
 
     public function testValid(): void
     {
         $coords = $this->geoApi->getFromAddress('8 bd du port', '44380');
-        $this->assertEquals(-2.340983, $coords['longitude']);
-        $this->assertEquals(47.258811, $coords['latitude']);
+        $this->assertEquals(-2.340983, $coords->getLongitude());
+        $this->assertEquals(47.258811, $coords->getLatitude());
     }
 
     public function testInvalid()

@@ -3,7 +3,7 @@
 namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
-use App\Repository\UserRepository;
+use App\Domain\Security\Repository\UserRepository;
 
 class AddUserCommandTest extends AbstractCommandTest
 {
