@@ -2,12 +2,11 @@
 namespace App\Domain\Place\EventListener;
 
 use App\Action\Localize;
-use Doctrine\ORM\Events;
 use App\Domain\Place\Entity\Place;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use App\Domain\Place\Service\GeoApi\GeoApiInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Events;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 
 class PlaceListener implements EventSubscriberInterface
@@ -42,7 +41,7 @@ class PlaceListener implements EventSubscriberInterface
             return;
         }
 
-        if ($context === 'create' && (!empty($entity->getLongitude) || !empty($entity->getLatitude()))) {
+        if ($context === 'create' && (!empty($entity->getLongitude()) || !empty($entity->getLatitude()))) {
             return;
         }
 
