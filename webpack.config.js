@@ -65,7 +65,6 @@ Encore
     // enables VueJS support
     .enableVueLoader()
     .addAliases({
-      vue$: 'vue/dist/vue.runtime.esm.js',
       '@': path.resolve('assets/scripts')
     })
 

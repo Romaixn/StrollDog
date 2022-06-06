@@ -4,20 +4,19 @@
     ],
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^2.1.0",
         "autoprefixer": "^10.4.2",
         "core-js": "^3.0.0",
-        "portal-vue": "^2.1.7",
         "postcss-loader": "^6.2.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.49.0",
         "sass-loader": "^12.4.0",
         "tailwindcss": "^3.0.24",
-        "vue-loader": "^15.9.8",
-        "vue-meta": "^2.4.0",
-        "vue-template-compiler": "^2.6.14",
+        "vue-loader": "^17.0.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -27,9 +26,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-    },
-    "dependencies": {
-        "@inertiajs/inertia": "^0.11.0",
-        "@inertiajs/inertia-vue": "^0.8.0"
     }
 }
