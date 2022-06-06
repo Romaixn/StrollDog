@@ -5,7 +5,10 @@
 </template>
 
 <script>
+import Layout from '@/layouts/Front'
+
 export default {
-  metaInfo: { title: 'Home' },
+    metaInfo: { title: 'Home' },
+    layout: Layout,
 }
 </script>

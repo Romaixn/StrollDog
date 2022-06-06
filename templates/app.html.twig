@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-50">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +12,27 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
+        {# @routes #}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <script>
+            // the world's tiniest adapter to handle tighten/ziggy's 'route' function calls with FOSJSRoutingBundle
+        window.route = function (name, params) { // laravel routes use a dot notation that i refuse to adopt on the symfony side
+        name = name.replace('.', '_')
+        if (typeof(params) === 'number') {
+        params = {
+        'id': params
+        }
+        }
+        return Routing.generate(name, params)
+        }
+        </script>
+
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
+	<body class="h-full">
 		{{ inertia(page) }}
 	</body>
 </html>

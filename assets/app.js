@@ -4,15 +4,17 @@ import './styles/app.scss';
 import './bootstrap';
 
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue3'
+import { createInertiaApp, InertiaLink } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 
 InertiaProgress.init()
 
 createInertiaApp({
-  resolve: name => require(`@/Pages/${name}`),
+  resolve: name => require(`@/pages/${name}`),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
+      .component('inertia-link', InertiaLink)
+      .mixin({ methods: { route: window.route } })
       .use(plugin)
       .mount(el)
   },

@@ -4,14 +4,14 @@ namespace App\Controller;
 
 use App\Domain\Place\Service\SearchPlace;
 use App\Domain\Place\Form\SearchPlaceType;
+use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class SearchController extends AbstractController
+class SearchController extends AbstractInertiaController
 {
-    #[Route('/search', name: 'search')]
+    #[Route('/search', name: 'search', options: ['expose' => true]) ]
     public function index(Request $request, SearchPlace $searchPlace): Response
     {
         $form = $this->createForm(SearchPlaceType::class);
@@ -29,7 +29,7 @@ class SearchController extends AbstractController
             dd($result);
         }
 
-        return $this->render('search/search.html.twig', [
+        return $this->renderWithInertia('Search', [
             'form' => $form->createView(),
             'result' => $result,
         ]);
