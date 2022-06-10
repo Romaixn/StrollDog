@@ -8,15 +8,11 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 trait BuildInertiaDefaultPropsTrait
 {
-    /**
-     * @return array<string, mixed>
-     */
     protected function buildDefaultProps(Request $request, ?User $user): array
     {
         $flashSuccessMessage = null;
         $flashErrorMessage = null;
 
-        // @phpstan-ignore-next-line
         if ($request->hasSession()) {
             /** @var Session $session */
             $session = $request->getSession();

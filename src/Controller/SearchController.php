@@ -2,36 +2,77 @@
 
 namespace App\Controller;
 
-use App\Domain\Place\Service\SearchPlace;
-use App\Domain\Place\Form\SearchPlaceType;
-use Rompetomp\InertiaBundle\Service\InertiaInterface;
+use App\Domain\Place\Enum\Influx;
+use App\Domain\Place\Repository\TypeRepository;
+
+use function Symfony\Component\String\s;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Place\Service\Search\SearchPlace;
+use App\Domain\Place\Service\Search\Model\Search;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SearchController extends AbstractInertiaController
 {
-    #[Route('/search', name: 'search', options: ['expose' => true]) ]
-    public function index(Request $request, SearchPlace $searchPlace): Response
+    public function __construct(
+        private SearchPlace $searchPlace,
+        private TypeRepository $typeRepository
+    ) {
+    }
+
+    #[Route("/search", name: "search", methods:['GET'], options: ['expose' => true])]
+    #[Route("/search", name: "search_submit", methods:['POST'], options: ['expose' => true])]
+    public function index(Request $request): Response
     {
-        $form = $this->createForm(SearchPlaceType::class);
-        $form->handleRequest($request);
+        if ($request->getMethod() === 'POST') {
+            $search = new Search();
 
-        $result = null;
-        if ($form->isSubmitted() && $form->isValid()) {
-            $criteria = [
-                'types' => $form->get('type')->getData()->toArray(),
-                'influx' => $form->get('influx')->getData()->name,
-                'ratings' => $form->get('ratings')->getData()
+            [$places, $errors] = $this->handleFormData($request, $search);
+        }
+
+        $influxChoices = [];
+        foreach (Influx::cases() as $influx) {
+            $influxChoices[] = [
+                'id' => $influx->name,
+                'value' => $influx->value
             ];
-
-            $result = $searchPlace->search($criteria);
-            dd($result);
+        }
+        $typeChoices = [];
+        foreach ($this->typeRepository->findAll() as $type) {
+            $typeChoices[] = [
+                'id' => $type->getId(),
+                'value' => $type->getName()
+            ];
         }
 
         return $this->renderWithInertia('Search', [
-            'form' => $form->createView(),
-            'result' => $result,
+            'places' => isset($places) ? new \ArrayObject($places) : new \ArrayObject(),
+            'errors' => isset($errors) ? new \ArrayObject($errors) : new \ArrayObject(),
+            'types' => $typeChoices,
+            'influx' => $influxChoices,
         ]);
+    }
+
+    private function handleFormData(Request $request, Search $search): array
+    {
+        $search->setInflux(Influx::tryFrom($request->request->get('influx')));
+        $search->setRatings($request->request->get('rating'));
+        $search->setType($request->request->get('types') ? $this->typeRepository->find($request->request->get('types')) : null);
+
+        $violations = $this->validator->validate($search);
+
+        if ($violations->count() === 0) {
+            return [$this->searchPlace->search($search), []];
+        }
+
+        $errors = [];
+        foreach ($violations as $violation) {
+            $propertyName = (string) s($violation->getPropertyPath())->snake();
+
+            $errors[$propertyName] = (string) $violation->getMessage();
+        }
+
+        return [[], $errors];
     }
 }

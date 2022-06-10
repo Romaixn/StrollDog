@@ -4,21 +4,37 @@ namespace App\Controller;
 
 use App\Domain\Security\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Service\Attribute\Required;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use App\Controller\Traits\BuildInertiaDefaultPropsTrait;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class AbstractInertiaController extends AbstractController
 {
     use BuildInertiaDefaultPropsTrait;
 
-    public function __construct(
-        protected InertiaInterface $inertia,
-        protected ValidatorInterface $validator,
-        private RequestStack $requestStack
-    ) {
+    protected InertiaInterface $inertia;
+    protected ValidatorInterface $validator;
+    protected RequestStack $requestStack;
+
+    #[Required]
+    public function setInertia(InertiaInterface $inertia): void
+    {
+        $this->inertia = $inertia;
+    }
+
+    #[Required]
+    public function setValidator(ValidatorInterface $validator): void
+    {
+        $this->validator = $validator;
+    }
+
+    #[Required]
+    public function setRequestStack(RequestStack $requestStack): void
+    {
+        $this->requestStack = $requestStack;
     }
 
     /**

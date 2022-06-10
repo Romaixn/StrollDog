@@ -65,7 +65,8 @@ Encore
     // enables VueJS support
     .enableVueLoader()
     .addAliases({
-      '@': path.resolve('assets/scripts')
+      '@': path.resolve('assets/scripts'),
+      '@img': path.resolve('assets/images')
     })
 
     // uncomment if you use TypeScript
