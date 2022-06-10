@@ -20,17 +20,14 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Domain\Security\Auth\AppAuthenticator
+            # custom_authenticator: App\Domain\Security\Auth\AppAuthenticator
+            json_login:
+                check_path: login_attempt
             logout:
-                path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+                path: logout
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

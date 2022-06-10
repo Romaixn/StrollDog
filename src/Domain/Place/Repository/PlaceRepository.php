@@ -3,6 +3,7 @@
 namespace App\Domain\Place\Repository;
 
 use App\Domain\Place\Entity\Place;
+use App\Domain\Place\Service\Search\Model\Search;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -22,13 +23,13 @@ class PlaceRepository extends ServiceEntityRepository
     /**
      * @return Place[] Returns an array of Place objects
      */
-    public function search(array $criteria)
+    public function search(Search $search)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.influx = :influx')
             ->andWhere('p.ratings >= :ratings')
-            ->setParameter('influx', $criteria['influx'])
-            ->setParameter('ratings', $criteria['ratings'])
+            ->setParameter('influx', $search->getInflux())
+            ->setParameter('ratings', $search->getRatings())
             ->getQuery()
             ->getResult()
         ;

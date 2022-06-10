@@ -124,6 +124,18 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        },
+        "files": [
+            "config/routes/fos_js_routing.yaml"
+        ]
+    },
     "jms/metadata": {
         "version": "2.6.1"
     },
@@ -206,6 +218,9 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "rompetomp/inertia-bundle": {
+        "version": "v2.2.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -694,5 +709,8 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v2.0.0"
     }
 }
