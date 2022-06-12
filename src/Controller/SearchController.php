@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\String\s;
 
-class SearchController extends AbstractInertiaController
+final class SearchController extends AbstractInertiaController
 {
     public function __construct(
         private SearchPlace $searchPlace,

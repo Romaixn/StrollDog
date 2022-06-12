@@ -10,7 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class TypeCrudController extends AbstractCrudController
+final class TypeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {

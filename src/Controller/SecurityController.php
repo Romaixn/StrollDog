@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractInertiaController
+final class SecurityController extends AbstractInertiaController
 {
     #[Route('/login', name: 'login', methods: ['GET'], options: ['expose' => true])]
     #[Route('/login', name: 'login_attempt', methods: ['POST'], options: ['expose' => true])]
