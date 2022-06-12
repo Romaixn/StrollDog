@@ -63,7 +63,7 @@ test: ## Run PHPUnit tests
 
 ## —— Fixers 🔧 ———————————————————————————————————————————————————————————————
 phpstan: ## Run PHPStan
-	@$(PHP) vendor/bin/phpstan analyse -c phpstan.neon --no-progress --no-interaction
+	@$(PHP) vendor/bin/phpstan analyse -c phpstan.neon --no-progress --no-interaction --memory-limit 1G
 
 phpcs: ## Run PHP Code Sniffer
 	@$(PHP) vendor/bin/php-cs-fixer fix --allow-risky=yes
