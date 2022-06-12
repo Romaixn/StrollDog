@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Place\DataFixtures;
 
-use Faker;
+use App\Domain\Place\Entity\Place;
 use App\Domain\Place\Entity\Type;
 use App\Domain\Place\Enum\Influx;
-use App\Domain\Place\Entity\Place;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Faker;
 
 class PlaceFixtures extends Fixture
 {
@@ -27,7 +29,7 @@ class PlaceFixtures extends Fixture
             ->setName('Champ');
         $manager->persist($champ);
 
-        for ($i=0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; ++$i) {
             $place = (new Place())
                 ->setTitle($faker->text(10))
                 ->setDescription($faker->realText())

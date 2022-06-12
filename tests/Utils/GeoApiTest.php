@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Utils;
 
 use App\Domain\Place\Service\GeoApi\GeoApiInterface;
@@ -13,7 +15,7 @@ class GeoApiTest extends KernelTestCase
     {
         self::bootKernel();
 
-        /** @var GeoApi $geoApi */
+        /* @var GeoApi $geoApi */
         $this->geoApi = static::getContainer()->get(GeoApiInterface::class);
     }
 

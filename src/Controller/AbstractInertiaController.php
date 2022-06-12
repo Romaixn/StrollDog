@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Domain\Security\Entity\User;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\Service\Attribute\Required;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use App\Controller\Traits\BuildInertiaDefaultPropsTrait;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Domain\Security\Entity\User;
+use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 abstract class AbstractInertiaController extends AbstractController
 {

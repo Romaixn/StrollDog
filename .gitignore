@@ -30,3 +30,8 @@ public/uploads/images/users/*
 !public/uploads/images/users/.gitkeep
 public/uploads/images/places/*
 !public/uploads/images/places/.gitkeep
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

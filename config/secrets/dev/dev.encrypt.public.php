@@ -1,3 +1,6 @@
-<?php // dev.encrypt.public on Fri, 21 Jan 2022 23:36:50 +0000
+<?php
+
+declare(strict_types=1);
+// dev.encrypt.public on Fri, 21 Jan 2022 23:36:50 +0000
 
 return "S\xAC\x3F\xA3\x15\x19\xDCAV\xA2p\xA7\xAF\x88\x9A\x7D\x05\x8C\x2B\xB8\x11d\xDCbh\xD1\x8E\x03c\xBF\xD9g";

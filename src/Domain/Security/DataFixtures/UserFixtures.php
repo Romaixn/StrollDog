@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Security\DataFixtures;
 
-use Faker;
 use App\Domain\Security\Entity\User;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Faker;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
@@ -27,7 +29,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
-        for ($i=0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; ++$i) {
             $user = (new User())
                 ->setUsername($faker->userName())
                 ->setEmail($faker->email())

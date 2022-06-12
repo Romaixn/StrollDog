@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Domain\Place\Enum\Influx;
 use App\Domain\Place\Repository\TypeRepository;
-
-use function Symfony\Component\String\s;
+use App\Domain\Place\Service\Search\Model\Search;
+use App\Domain\Place\Service\Search\SearchPlace;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Domain\Place\Service\Search\SearchPlace;
-use App\Domain\Place\Service\Search\Model\Search;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use function Symfony\Component\String\s;
 
 class SearchController extends AbstractInertiaController
 {
@@ -21,8 +21,8 @@ class SearchController extends AbstractInertiaController
     ) {
     }
 
-    #[Route("/search", name: "search", methods:['GET'], options: ['expose' => true])]
-    #[Route("/search", name: "search_submit", methods:['POST'], options: ['expose' => true])]
+    #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
+    #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
     public function index(Request $request): Response
     {
         if ($request->getMethod() === 'POST') {
@@ -35,14 +35,14 @@ class SearchController extends AbstractInertiaController
         foreach (Influx::cases() as $influx) {
             $influxChoices[] = [
                 'id' => $influx->name,
-                'value' => $influx->value
+                'value' => $influx->value,
             ];
         }
         $typeChoices = [];
         foreach ($this->typeRepository->findAll() as $type) {
             $typeChoices[] = [
                 'id' => $type->getId(),
-                'value' => $type->getName()
+                'value' => $type->getName(),
             ];
         }
 

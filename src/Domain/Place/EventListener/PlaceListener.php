@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Domain\Place\EventListener;
 
 use App\Action\Localize;
@@ -7,7 +10,6 @@ use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Component\Messenger\MessageBusInterface;
-
 
 class PlaceListener implements EventSubscriberInterface
 {

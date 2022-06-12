@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
-use Psr\Log\LoggerInterface;
 use App\Domain\Security\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Domain\Security\Service\Validator;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use App\Domain\Security\Repository\UserRepository;
+use App\Domain\Security\Service\Validator;
+use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Exception\RuntimeException;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * A console command that deletes users from the database.

@@ -29,6 +29,10 @@ jobs:
               run: curl http://localhost
             - name: Check HTTPS reachability
               run: curl -k https://localhost
+            - name: Run PHPStan
+              shell: 'script -q -e -c "bash {0}"'
+              run: |
+                make phpstan
             - name: Run tests
               shell: 'script -q -e -c "bash {0}"'
               run: |

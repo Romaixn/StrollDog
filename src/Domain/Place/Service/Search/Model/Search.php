@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Domain\Place\Service\Search\Model;
 
 use App\Domain\Place\Entity\Type;

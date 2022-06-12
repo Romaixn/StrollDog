@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Tests\Controller;
+declare(strict_types=1);
 
+namespace App\Tests\Controller;
 
 use App\Domain\Security\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

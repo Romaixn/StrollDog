@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Domain\Place\Service\GeoApi\DataGouv;
 
 use App\Domain\Place\Service\GeoApi\GeoApiInterface;
@@ -10,7 +13,7 @@ final class GeoApi implements GeoApiInterface
     public function __construct(private HttpClientInterface $client)
     {
         $this->client = $this->client->withOptions([
-            'base_uri' => "https://api-adresse.data.gouv.fr/search/"
+            'base_uri' => 'https://api-adresse.data.gouv.fr/search/',
         ]);
     }
 

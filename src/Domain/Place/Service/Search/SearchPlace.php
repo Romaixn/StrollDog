@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Place\Service\Search;
 
 use App\Domain\Place\Repository\PlaceRepository;
@@ -14,6 +16,7 @@ class SearchPlace
     public function search(Search $search)
     {
         dump($search);
+
         return $this->placeRepository->search($search);
     }
 }

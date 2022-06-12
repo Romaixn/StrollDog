@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Traits;
 
 use App\Domain\Security\Entity\User;
@@ -33,18 +35,15 @@ trait BuildInertiaDefaultPropsTrait
             'auth' => [
                 'user' => $user !== null
                     ? [
-                        'id' => $user->getId(),
                         'username' => $user->getUsername(),
-                        'email' => $user->getEmail(),
-                        'name' => $user->getName(),
-                        'role' => $user->getRoles()
+                        'role' => $user->getRoles(),
                     ]
-                    : null
+                    : null,
             ],
             'flash' => [
                 'success' => $flashSuccessMessage,
-                'error' => $flashErrorMessage
-            ]
+                'error' => $flashErrorMessage,
+            ],
         ];
     }
 }

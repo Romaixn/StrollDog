@@ -21,6 +21,7 @@
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <inertia-link v-if="!isConnected" :href="route('login')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Sign in </inertia-link>
           <a v-if="!isConnected" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
+          <a v-if="isAdmin" :href="route('admin')" class="mr-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Dashboard </a>
           <a v-if="isConnected" href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Account </a>
         </div>
       </div>
@@ -46,6 +47,7 @@
             <nav class="grid gap-y-8">
               <inertia-link @click="close(close)" :href="route('home')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Home </inertia-link>
               <inertia-link @click="close(close)" :href="route('search')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Search </inertia-link>
+              <inertia-link v-if="isAdmin" @click="close(close)" :href="route('admin')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Dashboard </inertia-link>
             </nav>
             <div>
               <a v-if="!isConnected" href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
@@ -76,6 +78,12 @@ const props = defineProps({
     isConnected: {
         type: Boolean,
         required: true,
+        default: false
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false
     },
 })
 

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Utils;
 
-use PHPUnit\Framework\TestCase;
 use App\Domain\Security\Service\Validator;
+use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase
 {

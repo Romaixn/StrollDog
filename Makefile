@@ -60,3 +60,10 @@ test: ## Run PHPUnit tests
 	@$(SYMFONY) doctrine:migrations:migrate -n --env=test
 	@$(SYMFONY) doctrine:fixtures:load -n --env=test
 	@$(PHP) bin/phpunit
+
+## —— Fixers 🔧 ———————————————————————————————————————————————————————————————
+phpstan: ## Run PHPStan
+	@$(PHP) vendor/bin/phpstan analyse -c phpstan.neon --no-progress --no-interaction
+
+phpcs: ## Run PHP Code Sniffer
+	@$(PHP) vendor/bin/php-cs-fixer fix --allow-risky=yes
