@@ -9,7 +9,7 @@ includes:
 rules:
     - App\Infrastructure\PHPStan\ControllerIsFinalRule
     - App\Infrastructure\PHPStan\ControllerExtendsSymfonyRule
-    - App\Infrastructure\PHPStan\NoNewInControllerRule
+    # - App\Infrastructure\PHPStan\NoNewInControllerRule
 
 parameters:
     # https://phpstan.org/config-reference#rule-level
@@ -19,7 +19,7 @@ parameters:
     paths:
         - config
         - src
-        - tests
+        #- tests
         - public
 
     # https://github.com/phpstan/phpstan-symfony#configuration
@@ -27,15 +27,14 @@ parameters:
     symfony:
         containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
 
-
     # https://phpstan.org/config-reference#vague-typehints
     checkMissingIterableValueType:           true # https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type
-    checkGenericClassInNonGenericObjectType: true # this parameter is activated at level 6
+    checkGenericClassInNonGenericObjectType: false # this parameter is activated at level 6
 
     # Nothing ignored! (almost!) 🎉
     ignoreErrors:
-        - '#Dead catch - Error is never thrown in the try block.#'
-        - '#Variable method call#'
+        # - '#Dead catch - Error is never thrown in the try block.#'
+        # - '#Variable method call#'
 
     # I don't use the Symfony PHPUnit bridge in this project, but if you do, you
     # probably will have to add the following bootstrap file:

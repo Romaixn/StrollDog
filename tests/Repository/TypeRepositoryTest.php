@@ -9,9 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class TypeRepositoryTest extends KernelTestCase
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
+    /** @phpstan-ignore-next-line */
     private $entityManager;
 
     protected function setUp(): void

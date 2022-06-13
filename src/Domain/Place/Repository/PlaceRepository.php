@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Place|null findOneBy(array $criteria, array $orderBy = null)
  * @method Place[]    findAll()
  * @method Place[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @extends ServiceEntityRepository<Place>
  */
 class PlaceRepository extends ServiceEntityRepository
 {
@@ -23,9 +25,9 @@ class PlaceRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Place[] Returns an array of Place objects
+     * @return mixed Returns an array of Place objects
      */
-    public function search(Search $search)
+    public function search(Search $search): mixed
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.influx = :influx')

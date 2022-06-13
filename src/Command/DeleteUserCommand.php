@@ -93,6 +93,7 @@ class DeleteUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        /** @phpstan-ignore-next-line */
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
         /** @var User|null $user */

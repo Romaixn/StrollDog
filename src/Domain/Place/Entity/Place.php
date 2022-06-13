@@ -8,6 +8,7 @@ use App\Domain\Place\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 class Place
@@ -15,42 +16,44 @@ class Place
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private string $title;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $description;
+    private ?string $description;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $address;
+    private string $address;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $city;
+    private string $city;
 
     #[ORM\Column(type: 'string', length: 5)]
-    private $postalCode;
+    private string $postalCode;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $country;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $longitude;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $latitude;
+    private ?string $country;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $ratings;
+    private ?float $longitude;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $latitude;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $ratings;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $influx;
+    private ?string $influx;
 
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'places')]
+    /** @phpstan-ignore-next-line */
     private $types;
 
     #[ORM\OneToMany(mappedBy: 'place', targetEntity: Picture::class, orphanRemoval: true, cascade: ['persist'])]
+    /** @phpstan-ignore-next-line */
     private $pictures;
 
     public function __construct()
@@ -62,6 +65,13 @@ class Place
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getTitle(): ?string
@@ -88,7 +98,7 @@ class Place
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAddress(): string
     {
         return $this->address;
     }
@@ -112,7 +122,7 @@ class Place
         return $this;
     }
 
-    public function getPostalCode(): ?string
+    public function getPostalCode(): string
     {
         return $this->postalCode;
     }
@@ -136,24 +146,24 @@ class Place
         return $this;
     }
 
-    public function getLongitude(): ?string
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setLongitude(string $longitude): self
+    public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
 
         return $this;
     }
 
-    public function getLatitude(): ?string
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    public function setLatitude(string $latitude): self
+    public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
 

@@ -8,6 +8,7 @@ use App\Domain\Place\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 class Type
@@ -15,12 +16,13 @@ class Type
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'types')]
+    /** @phpstan-ignore-next-line */
     private $places;
 
     public function __construct()
@@ -31,6 +33,13 @@ class Type
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -46,7 +55,7 @@ class Type
     }
 
     /**
-     * @return Collection|Place[]
+     * @return Collection<Place>
      */
     public function getPlaces(): Collection
     {

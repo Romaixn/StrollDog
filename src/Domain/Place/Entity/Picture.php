@@ -16,23 +16,23 @@ class Picture
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $image;
+    private string $image;
 
     #[Vich\UploadableField(mapping: 'place_images', fileNameProperty: 'image')]
-    private $imageFile;
+    private ?File $imageFile;
 
     #[ORM\ManyToOne(targetEntity: Place::class, inversedBy: 'pictures')]
     #[ORM\JoinColumn(nullable: false)]
-    private $place;
+    private ?Place $place;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -42,6 +42,13 @@ class Picture
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getImage(): ?string

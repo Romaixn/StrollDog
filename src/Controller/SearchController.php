@@ -8,6 +8,9 @@ use App\Domain\Place\Enum\Influx;
 use App\Domain\Place\Repository\TypeRepository;
 use App\Domain\Place\Service\Search\Model\Search;
 use App\Domain\Place\Service\Search\SearchPlace;
+use InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,16 +50,21 @@ final class SearchController extends AbstractInertiaController
         }
 
         return $this->renderWithInertia('Search', [
-            'places' => isset($places) ? new \ArrayObject($places) : new \ArrayObject(),
-            'errors' => isset($errors) ? new \ArrayObject($errors) : new \ArrayObject(),
+            'places' => isset($places) ? $places : [],
+            'errors' => isset($errors) ? $errors : [],
             'types' => $typeChoices,
             'influx' => $influxChoices,
         ]);
     }
 
+    /**
+     * @return array<mixed>
+     */
     private function handleFormData(Request $request, Search $search): array
     {
+        /** @phpstan-ignore-next-line */
         $search->setInflux(Influx::tryFrom($request->request->get('influx')));
+        /** @phpstan-ignore-next-line */
         $search->setRatings($request->request->get('rating'));
         $search->setType($request->request->get('types') ? $this->typeRepository->find($request->request->get('types')) : null);
 

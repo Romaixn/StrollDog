@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class GeoApiTest extends KernelTestCase
 {
-    private $geoApi;
+    private GeoApiInterface $geoApi;
 
     protected function setUp(): void
     {
@@ -26,7 +26,7 @@ class GeoApiTest extends KernelTestCase
         $this->assertEquals(47.258811, $coords->getLatitude());
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(\Exception::class);
 

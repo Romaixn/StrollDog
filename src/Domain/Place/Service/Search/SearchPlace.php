@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Place\Service\Search;
 
+use App\Domain\Place\Entity\Place;
 use App\Domain\Place\Repository\PlaceRepository;
 use App\Domain\Place\Service\Search\Model\Search;
 
@@ -13,7 +14,10 @@ class SearchPlace
     {
     }
 
-    public function search(Search $search)
+    /**
+     * @return mixed
+     */
+    public function search(Search $search): mixed
     {
         dump($search);
 

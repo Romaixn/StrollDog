@@ -20,7 +20,6 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            # custom_authenticator: App\Domain\Security\Auth\AppAuthenticator
             json_login:
                 check_path: login_attempt
             logout:

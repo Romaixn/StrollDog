@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase
 {
-    private $validator;
+    private Validator $validator;
 
     protected function setUp(): void
     {
@@ -86,7 +86,7 @@ class ValidatorTest extends TestCase
         $this->assertSame($test, $this->validator->validateName($test));
     }
 
-    public function testValidateNameEmpty()
+    public function testValidateNameEmpty(): void
     {
         $this->expectException('Exception');
         $this->expectExceptionMessage('The name can not be empty.');
