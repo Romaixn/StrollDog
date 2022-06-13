@@ -49,7 +49,9 @@ final class UserCrudController extends AbstractCrudController
         yield TextField::new('username');
         yield EmailField::new('email');
         yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
-        yield ImageField::new('image')->setBasePath((string) $this->getParameter('app.path.user_images'))->onlyOnDetail();
+        /** @var string $path */
+        $path = $this->getParameter('app.path.user_images');
+        yield ImageField::new('image')->setBasePath($path)->onlyOnDetail();
         yield DateTimeField::new('createdAt')->setDisabled(true)->onlyOnDetail();
         yield DateTimeField::new('updatedAt')->setDisabled(true)->onlyOnDetail();
     }
