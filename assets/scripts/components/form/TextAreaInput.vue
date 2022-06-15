@@ -7,13 +7,15 @@
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid';
+
 export default {
   inheritAttrs: false,
   props: {
     id: {
       type: String,
       default() {
-        return `textarea-input-${this._uid}`
+        return `textarea-input-${uuid()}`
       },
     },
     value: String,

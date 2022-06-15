@@ -25,9 +25,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private int $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private string $username;
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Email]
     private string $email;
 
@@ -38,9 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(type: 'string')]
+    #[Assert\NotCompromisedPassword]
     private string $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private string $name;
 
     #[ORM\Column(type: 'boolean')]
