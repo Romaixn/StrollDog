@@ -82,7 +82,7 @@ final class PlaceCrudController extends AbstractCrudController
         yield TextField::new('city');
         yield TextField::new('postalCode')->hideOnIndex();
         yield CountryField::new('country')->hideOnIndex();
-        yield TextField::new('longitude')->onlyOnDetail();
-        yield TextField::new('latitude')->onlyOnDetail();
+        yield NumberField::new('longitude')->setNumDecimals(6)->onlyOnDetail();
+        yield NumberField::new('latitude')->setNumDecimals(6)->onlyOnDetail();
     }
 }

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Component\Mime\Address;
 use App\Domain\Security\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use function Symfony\Component\String\s;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use App\Domain\Security\Service\EmailVerifier;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Security\Repository\UserRepository;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 
 final class RegistrationController extends AbstractInertiaController

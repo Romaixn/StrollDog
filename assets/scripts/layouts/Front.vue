@@ -7,10 +7,50 @@
     </div>
 </template>
 
-<script setup>
+<script>
 import Header from '@/components/Header'
+import { useToast } from 'vue-toastification'
 
-const props = defineProps({
-    auth: Object,
-})
+export default {
+    components: {
+        Header
+    },
+    props: {
+        auth: {
+            type: Object,
+            required: true
+        },
+        flash: Object
+    },
+    mounted() {
+        const toast = useToast();
+
+        if (this.flash.success) {
+            setTimeout(() => {
+                toast.success(this.flash.success)
+            })
+        }
+
+        if (this.flash.error) {
+            setTimeout(() => {
+                toast.error(this.flash.error)
+            })
+        }
+    },
+    updated() {
+        const toast = useToast();
+
+        if (this.flash.success) {
+            setTimeout(() => {
+                toast.success(this.flash.success)
+            })
+        }
+
+        if (this.flash.error) {
+            setTimeout(() => {
+                toast.error(this.flash.error)
+            })
+        }
+    },
+}
 </script>

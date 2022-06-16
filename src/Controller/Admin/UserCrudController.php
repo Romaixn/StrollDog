@@ -34,7 +34,7 @@ final class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setSearchFields(['name', 'username', 'email'])
-            ->setDefaultSort(['updatedAt' => 'ASC', 'createdAt' => 'ASC'])
+            ->setDefaultSort(['updatedAt' => 'DESC', 'createdAt' => 'DESC'])
             ->setDateTimeFormat(DateTimeField::FORMAT_MEDIUM, DateTimeField::FORMAT_SHORT);
     }
 

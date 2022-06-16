@@ -1,5 +1,4 @@
 <template>
-    {{ errors }}
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
             <div>
@@ -10,11 +9,17 @@
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
                         <label for="username" class="sr-only">Username</label>
-                        <input v-model="form.username" id="username" name="username" type="text" autocomplete="username" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
+                        <input v-model="form.username" id="username" name="username" type="text" autocomplete="username"
+                            required
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                            placeholder="Username" />
                     </div>
                     <div>
                         <label for="password" class="sr-only">Password</label>
-                        <input v-model="form.password" id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
+                        <input v-model="form.password" id="password" name="password" type="password"
+                            autocomplete="current-password" required
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                            placeholder="Password" />
                     </div>
                 </div>
 
@@ -58,7 +63,8 @@ export default {
         TextInput
     },
     props: {
-        errors: Object
+        errors: Object,
+        last_username: String
     },
     setup() {
         const logo = require('@img/paw.svg');
@@ -69,7 +75,7 @@ export default {
         return {
             sending: false,
             form: {
-                username: null,
+                username: this.last_username ?? '',
                 password: null,
                 remember: false
             }
@@ -77,10 +83,11 @@ export default {
     },
     methods: {
         submit() {
-            const data = {
-                username: this.form.username,
-                password: this.form.password,
-            }
+            const data = new FormData();
+
+            data.append('username', this.form.username || '')
+            data.append('password', this.form.password || '')
+            data.append('_remember_me', this.form.remember || '')
 
             this.$inertia.post(this.route('login.attempt'), data, {
                 onStart: () => this.sending = true,

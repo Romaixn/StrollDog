@@ -18,10 +18,13 @@ final class SecurityController extends AbstractInertiaController
             return $this->redirectToRoute('home');
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $errors = $authenticationUtils->getLastAuthenticationError();
 
-        return $this->renderWithInertia('Login', ['errors' => $error]);
+        $this->addFlash('error', $errors?->getMessage());
+
+        return $this->renderWithInertia('Login', [
+            'last_username' => $authenticationUtils->getLastUsername()
+        ]);
     }
 
     #[Route('/logout', name: 'logout', options: ['expose' => true])]
