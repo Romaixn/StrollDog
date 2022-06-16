@@ -12,7 +12,6 @@ final class HomeController extends AbstractInertiaController
     #[Route('/', name: 'home', options: ['expose' => true]) ]
     public function index(): Response
     {
-        $this->addFlash('success', 'Bienvenue !');
         return $this->renderWithInertia('Home');
     }
 }
