@@ -3,6 +3,9 @@
         "defaults"
     ],
     "devDependencies": {
+        "@formkit/i18n": "^1.0.0-beta.8",
+        "@formkit/themes": "^1.0.0-beta.8",
+        "@formkit/vue": "^1.0.0-beta.8",
         "@headlessui/vue": "^1.6.4",
         "@heroicons/vue": "^1.0.6",
         "@hotwired/stimulus": "^3.0.0",

@@ -3,20 +3,16 @@
         <h1 class="mb-8 font-bold text-3xl">Search a place</h1>
         <form class="grid grid-cols-7 gap-6" @submit.prevent="submit">
             <div class="col-span-7 sm:col-span-2">
-                <text-input v-model="form.rating" :error="errors.rating" type="number" label="Rating"/>
+                <FormKit label="Rating" type="number" min="1" max="5" v-model="form.rating" />
             </div>
             <div class="col-span-7 sm:col-span-2">
-                <select-input v-model="form.type" :error="errors.type" label="Type">
-                    <option v-for="elem in types" :value="elem.id" :key="elem.id">{{ elem.value }}</option>
-                </select-input>
+                <FormKit label="Type" type="select" v-model="form.type" :options="types" />
             </div>
             <div class="col-span-7 sm:col-span-2">
-                <select-input v-model="form.influx" :error="errors.influx" label="Influx">
-                    <option v-for="elem in influx" :value="elem.value" :key="elem.id">{{ elem.value }}</option>
-                </select-input>
+                <FormKit label="Influx" type="select" v-model="form.influx" :options="influx" />
             </div>
             <div class="col-span-7 sm:col-span-1 flex items-end">
-                <button class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit">Search</button>
+                <FormKit label="Search" type="submit" />
             </div>
         </form>
     </main>
@@ -24,16 +20,10 @@
 
 <script>
 import Layout from '@/layouts/Front'
-import TextInput from '@/components/form/TextInput'
-import SelectInput from '@/components/form/SelectInput'
 
 export default {
     metaInfo: { title: 'Search' },
     layout: Layout,
-    components: {
-        TextInput,
-        SelectInput
-    },
     props: {
         types: Array,
         influx: Array,
@@ -51,13 +41,11 @@ export default {
     },
     methods: {
         submit() {
-            const data = {
-                influx: this.form.influx,
-                rating: this.form.rating,
-                type: this.form.type,
-            }
+            const data = new FormData();
 
-            console.log(data);
+            data.append('influx', this.form.influx)
+            data.append('rating', this.form.rating)
+            data.append('type', this.form.type)
 
             this.$inertia.post(this.route('search_submit'), data, {
                 onStart: () => this.sending = true,

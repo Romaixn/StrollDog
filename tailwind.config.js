@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  content: ['./templates/**/*.html.twig', './assets/scripts/**/*.vue'],
+  content: ['./templates/**/*.html.twig', './assets/scripts/**/*.vue', './assets/app.js'],
   theme: {
     extend: {
       fontFamily: {
@@ -11,5 +11,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('@formkit/themes/tailwindcss')
   ],
 }

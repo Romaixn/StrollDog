@@ -37,15 +37,15 @@ final class SearchController extends AbstractInertiaController
         $influxChoices = [];
         foreach (Influx::cases() as $influx) {
             $influxChoices[] = [
-                'id' => $influx->name,
-                'value' => $influx->value,
+                'label' => $influx->value,
+                'value' => $influx->name,
             ];
         }
         $typeChoices = [];
         foreach ($this->typeRepository->findAll() as $type) {
             $typeChoices[] = [
-                'id' => $type->getId(),
-                'value' => $type->getName(),
+                'label' => $type->getName(),
+                'value' => $type->getId(),
             ];
         }
 
@@ -62,6 +62,7 @@ final class SearchController extends AbstractInertiaController
      */
     private function handleFormData(Request $request, Search $search): array
     {
+        dd($request->request->get('rating'), $request->request->get('type'), $request->request->get('influx'));
         /** @phpstan-ignore-next-line */
         $search->setInflux(Influx::tryFrom($request->request->get('influx')));
         /** @phpstan-ignore-next-line */
@@ -78,7 +79,7 @@ final class SearchController extends AbstractInertiaController
         foreach ($violations as $violation) {
             $propertyName = (string) s($violation->getPropertyPath())->snake();
 
-            $errors[$propertyName] = (string) $violation->getMessage();
+            $errors[$propertyName][] = (string) $violation->getMessage();
         }
 
         return [[], $errors];

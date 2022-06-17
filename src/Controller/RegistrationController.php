@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Domain\Security\Auth\AppAuthenticator;
 use App\Domain\Security\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use function Symfony\Component\String\s;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Security\Repository\UserRepository;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 
@@ -27,7 +29,7 @@ final class RegistrationController extends AbstractInertiaController
 
     #[Route('/register', name: 'register', methods: ['GET'] , options: ['expose' => true])]
     #[Route('/register_store', name: 'register_store', methods: ['POST'] , options: ['expose' => true])]
-    public function register(Request $request): Response
+    public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response
     {
         if ($request->getMethod() === 'POST') {
             $user = new User();
@@ -46,7 +48,11 @@ final class RegistrationController extends AbstractInertiaController
                 //         ->htmlTemplate('registration/confirmation_email.html.twig')
                 // );
 
-                return $this->redirectToRoute('login');
+                return $userAuthenticator->authenticateUser(
+                    $user,
+                    $authenticator,
+                    $request
+                );
             }
         }
 
@@ -124,17 +130,7 @@ final class RegistrationController extends AbstractInertiaController
         foreach ($violations as $violation) {
             $propertyName = (string) s($violation->getPropertyPath())->snake();
 
-            if ($propertyName === 'photo_file') {
-                if (!array_key_exists('photo', $errors)) {
-                    $errors['photo'] = [];
-                }
-
-                $errors['photo'][] = (string) $violation->getMessage();
-
-                continue;
-            }
-
-            $errors[$propertyName] = (string) $violation->getMessage();
+            $errors[$propertyName][] = (string) $violation->getMessage();
         }
 
         return $errors;

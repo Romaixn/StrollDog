@@ -54,13 +54,11 @@
 <script>
 import { LockClosedIcon } from '@heroicons/vue/solid'
 import Layout from '@/layouts/Front'
-import TextInput from '@/components/form/TextInput'
 
 export default {
     layout: Layout,
     components: {
         LockClosedIcon,
-        TextInput
     },
     props: {
         errors: Object,
