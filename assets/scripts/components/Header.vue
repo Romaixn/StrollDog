@@ -10,19 +10,19 @@
         </div>
         <div class="-mr-2 -my-2 md:hidden">
           <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-            <span class="sr-only">Open menu</span>
+            <span class="sr-only">Ouvrir le menu</span>
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
           </PopoverButton>
         </div>
         <nav class="hidden md:flex space-x-10">
-          <inertia-link :href="route('home')" class="text-base font-medium text-gray-500 hover:text-gray-900"> Home </inertia-link>
-          <inertia-link :href="route('search')" class="text-base font-medium text-gray-500 hover:text-gray-900"> Search </inertia-link>
+          <inertia-link :href="route('home')" class="text-base font-medium text-gray-500 hover:text-gray-900"> Accueil </inertia-link>
+          <inertia-link :href="route('search')" class="text-base font-medium text-gray-500 hover:text-gray-900"> Recherche </inertia-link>
         </nav>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <inertia-link v-if="!isConnected" :href="route('login')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Sign in </inertia-link>
-          <a v-if="!isConnected" :href="route('register')" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
-          <a v-if="isAdmin" :href="route('admin')" class="mr-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Dashboard </a>
-          <a v-if="isConnected" href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Account </a>
+          <inertia-link v-if="!isConnected" :href="route('login')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Se connecter </inertia-link>
+          <a v-if="!isConnected" :href="route('register')" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </a>
+          <a v-if="isAdmin" :href="route('admin')" class="mr-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Tableau de bord </a>
+          <a v-if="isConnected" href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Mon compte </a>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
               </div>
               <div class="-mr-2">
                 <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                  <span class="sr-only">Close menu</span>
+                  <span class="sr-only">Fermer le menu</span>
                   <XIcon class="h-6 w-6" aria-hidden="true" />
                 </PopoverButton>
               </div>
@@ -45,18 +45,18 @@
           </div>
           <div class="py-6 px-5 space-y-6">
             <nav class="grid gap-y-8">
-              <inertia-link @click="close(close)" :href="route('home')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Home </inertia-link>
-              <inertia-link @click="close(close)" :href="route('search')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Search </inertia-link>
-              <inertia-link v-if="isAdmin" @click="close(close)" :href="route('admin')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Dashboard </inertia-link>
+              <inertia-link @click="close(close)" :href="route('home')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Accueil </inertia-link>
+              <inertia-link @click="close(close)" :href="route('search')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Recherche </inertia-link>
+              <inertia-link v-if="isAdmin" @click="close(close)" :href="route('admin')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Tableau de bord </inertia-link>
             </nav>
             <div>
-              <a v-if="!isConnected" :href="route('register')" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
+              <a v-if="!isConnected" :href="route('register')" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </a>
               <p v-if="!isConnected" class="mt-6 text-center text-base font-medium text-gray-500">
-                Existing customer?
+                Déjà utilisateur ?
                 {{ ' ' }}
-                <inertia-link :href="route('login')" class="text-indigo-600 hover:text-indigo-500"> Sign in </inertia-link>
+                <inertia-link :href="route('login')" class="text-indigo-600 hover:text-indigo-500"> Se connecter </inertia-link>
               </p>
-              <a v-if="isConnected" href="#" class="text-indigo-600 hover:text-indigo-500"> Account </a>
+              <a v-if="isConnected" href="#" class="text-indigo-600 hover:text-indigo-500"> Mon compte </a>
             </div>
           </div>
         </div>

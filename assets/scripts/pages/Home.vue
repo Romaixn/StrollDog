@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h1 class="mb-8 font-bold text-3xl">Homepage</h1>
+        <h1 class="mb-8 font-bold text-3xl">Accueil</h1>
     </main>
 </template>
 
@@ -8,7 +8,7 @@
 import Layout from '@/layouts/Front'
 
 export default {
-    metaInfo: { title: 'Home' },
+    metaInfo: { title: 'Accueil' },
     layout: Layout,
 }
 </script>
