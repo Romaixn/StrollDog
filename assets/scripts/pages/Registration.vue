@@ -6,8 +6,8 @@
             <FormKit label="Nom d'utilisateur" type="text" validation="required" v-model="form.username" :errors="errors.username"/>
             <FormKit label="E-mail" type="email" validation="required|email" v-model="form.email" :errors="errors.email" />
             <FormKit label="Nom" type="text" v-model="form.name" :errors="errors.name" />
-            <FormKit label="Mot de passe" type="password" validation="required" v-model="form.password" :errors="errors.password" />
-            <FormKit label="Confirmer le mot de passe" type="password" validation="required|confirm" />
+            <FormKit label="Mot de passe" name="password" type="password" validation="required" v-model="form.password" :errors="errors.password" />
+            <FormKit label="Confirmer le mot de passe" name="password_confirm" type="password" validation="required|confirm" validation-visibility="dirty" />
         </FormKit>
     </main>
 </template>

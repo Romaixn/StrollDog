@@ -19,8 +19,6 @@ class SearchPlace
      */
     public function search(Search $search): mixed
     {
-        dump($search);
-
         return $this->placeRepository->search($search);
     }
 }

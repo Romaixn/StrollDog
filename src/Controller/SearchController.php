@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 final class SearchController extends AbstractInertiaController
 {
     public function __construct(
-        /** @phpstan-ignore-next-line */
         private SearchPlace $searchPlace,
         private TypeRepository $typeRepository
     ) {
@@ -40,7 +39,7 @@ final class SearchController extends AbstractInertiaController
         foreach (Influx::cases() as $influx) {
             $influxChoices[] = [
                 'label' => $translator->trans($influx->value),
-                'value' => $influx->name,
+                'value' => $influx->value,
             ];
         }
         $typeChoices = [];
@@ -64,15 +63,29 @@ final class SearchController extends AbstractInertiaController
      */
     private function handleFormData(Request $request, Search $search): array
     {
-        dd($request->request->get('rating'), $request->request->get('type'), $request->request->get('influx'));
-        /** @phpstan-ignore-next-line */
-        $search->setInflux(Influx::tryFrom($request->request->get('influx')));
-        $search->setRatings($request->request->get('rating'));
-        $search->setType($request->request->get('types') ? $this->typeRepository->find($request->request->get('types')) : null);
+        /** @var int $rating */
+        $rating = $request->request->get('rating');
+        /** @var string $influx */
+        $influx = $request->request->get('influx');
+        /** @var string $type */
+        $type = $request->request->get('type');
+
+        if($influx !== 'null') {
+            $search->setInflux(Influx::tryFrom($influx));
+        }
+
+        if($rating !== 'null') {
+            $search->setRatings((int) $rating);
+        }
+
+        if($type !== 'null' && $type = $this->typeRepository->find($type)) {
+            $search->setType($type);
+        }
 
         $violations = $this->validator->validate($search);
 
         if ($violations->count() === 0) {
+            dump($this->searchPlace->search($search));
             return [$this->searchPlace->search($search), []];
         }
 

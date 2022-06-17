@@ -6,10 +6,10 @@
                 <FormKit label="Note" type="number" min="1" max="5" v-model="form.rating" />
             </div>
             <div class="col-span-7 sm:col-span-2">
-                <FormKit label="Type" type="select" v-model="form.type" :options="types" />
+                <FormKit label="Type de lieu" type="select" placeholder="Choisir un type" v-model="form.type" :options="types" />
             </div>
             <div class="col-span-7 sm:col-span-2">
-                <FormKit label="Affluence" type="select" v-model="form.influx" :options="influx" />
+                <FormKit label="Affluence" type="select" placeholder="Choisir une catégorie" v-model="form.influx" :options="influx" />
             </div>
             <div class="col-span-7 sm:col-span-1 flex items-end">
                 <FormKit label="Rechercher" type="submit" />
@@ -43,9 +43,9 @@ export default {
         submit() {
             const data = new FormData();
 
-            data.append('influx', this.form.influx)
-            data.append('rating', this.form.rating)
-            data.append('type', this.form.type)
+            data.append('influx', this.form.influx || null)
+            data.append('rating', this.form.rating || null)
+            data.append('type', this.form.type || null)
 
             this.$inertia.post(this.route('search.submit'), data, {
                 onStart: () => this.sending = true,
