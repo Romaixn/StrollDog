@@ -2,14 +2,13 @@
     <main>
         <h1 class="mb-8 font-bold text-3xl">Registration</h1>
 
-        <form class="space-y-4" @submit.prevent="submit">
+        <FormKit type="form" submit-label="Register" @submit="submit">
             <FormKit label="Username" type="text" validation="required" v-model="form.username" :errors="errors.username"/>
             <FormKit label="Email" type="email" validation="required|email" v-model="form.email" :errors="errors.email" />
             <FormKit label="Name" type="text" v-model="form.name" :errors="errors.name" />
             <FormKit label="Password" type="password" validation="required" v-model="form.password" :errors="errors.password" />
             <FormKit label="Confirm Password" type="password" validation="required|confirm" />
-            <FormKit label="Register" type="submit" ignore="false" />
-        </form>
+        </FormKit>
     </main>
 </template>
 

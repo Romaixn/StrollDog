@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1 class="mb-8 font-bold text-3xl">Search a place</h1>
-        <form class="grid grid-cols-7 gap-6" @submit.prevent="submit">
+        <FormKit type="form" form-class="grid grid-cols-7 gap-6" :actions="false" @submit="submit">
             <div class="col-span-7 sm:col-span-2">
                 <FormKit label="Rating" type="number" min="1" max="5" v-model="form.rating" />
             </div>
@@ -14,7 +14,7 @@
             <div class="col-span-7 sm:col-span-1 flex items-end">
                 <FormKit label="Search" type="submit" />
             </div>
-        </form>
+        </FormKit>
     </main>
 </template>
 
