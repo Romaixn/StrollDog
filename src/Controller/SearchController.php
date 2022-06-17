@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Domain\Place\Enum\Influx;
-use App\Domain\Place\Repository\TypeRepository;
-use App\Domain\Place\Service\Search\Model\Search;
-use App\Domain\Place\Service\Search\SearchPlace;
-use InvalidArgumentException;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use RuntimeException;
+use InvalidArgumentException;
+use App\Domain\Place\Enum\Influx;
+use function Symfony\Component\String\s;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Domain\Place\Repository\TypeRepository;
 use Symfony\Component\Routing\Annotation\Route;
-use function Symfony\Component\String\s;
+use App\Domain\Place\Service\Search\SearchPlace;
+use App\Domain\Place\Service\Search\Model\Search;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 final class SearchController extends AbstractInertiaController
 {
@@ -27,7 +28,7 @@ final class SearchController extends AbstractInertiaController
 
     #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
     #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
-    public function index(Request $request): Response
+    public function index(Request $request, TranslatorInterface $translator): Response
     {
         if ($request->getMethod() === 'POST') {
             $search = new Search();
@@ -38,7 +39,7 @@ final class SearchController extends AbstractInertiaController
         $influxChoices = [];
         foreach (Influx::cases() as $influx) {
             $influxChoices[] = [
-                'label' => $influx->value,
+                'label' => $translator->trans($influx->value),
                 'value' => $influx->name,
             ];
         }
