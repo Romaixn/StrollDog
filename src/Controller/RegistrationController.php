@@ -29,7 +29,7 @@ final class RegistrationController extends AbstractInertiaController
 
     #[Route('/register', name: 'register', methods: ['GET'] , options: ['expose' => true])]
     #[Route('/register_store', name: 'register_store', methods: ['POST'] , options: ['expose' => true])]
-    public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response
+    public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response|null
     {
         if ($request->getMethod() === 'POST') {
             $user = new User();
@@ -92,7 +92,7 @@ final class RegistrationController extends AbstractInertiaController
     }
 
     /**
-     * @return array<string, string> Validation errors
+     * @return array<string, array<int, string>> Validation errors
      */
     private function handleFormData(Request $request, User $user, string $successMessage): array
     {

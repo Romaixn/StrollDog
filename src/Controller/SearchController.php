@@ -19,6 +19,7 @@ use function Symfony\Component\String\s;
 final class SearchController extends AbstractInertiaController
 {
     public function __construct(
+        /** @phpstan-ignore-next-line */
         private SearchPlace $searchPlace,
         private TypeRepository $typeRepository
     ) {
@@ -65,7 +66,6 @@ final class SearchController extends AbstractInertiaController
         dd($request->request->get('rating'), $request->request->get('type'), $request->request->get('influx'));
         /** @phpstan-ignore-next-line */
         $search->setInflux(Influx::tryFrom($request->request->get('influx')));
-        /** @phpstan-ignore-next-line */
         $search->setRatings($request->request->get('rating'));
         $search->setType($request->request->get('types') ? $this->typeRepository->find($request->request->get('types')) : null);
 
