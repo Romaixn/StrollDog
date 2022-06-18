@@ -98,8 +98,6 @@ services:
   elasticsearch:
     container_name: strolldog-elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
-    ports:
-      - 9209:9200
     environment:
       - "discovery.type=single-node"
       - "bootstrap.memory_lock=true"
