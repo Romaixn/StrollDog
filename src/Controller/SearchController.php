@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use RuntimeException;
-use InvalidArgumentException;
 use App\Domain\Place\Enum\Influx;
 use function Symfony\Component\String\s;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Place\Service\Search\SearchPlace;
 use App\Domain\Place\Service\Search\Model\Search;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 final class SearchController extends AbstractInertiaController
 {
@@ -25,8 +22,8 @@ final class SearchController extends AbstractInertiaController
     ) {
     }
 
-    #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
-    #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
+    #[Route('/research', name: 'search', methods: ['GET'], options: ['expose' => true])]
+    #[Route('/research', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
     public function index(Request $request, TranslatorInterface $translator): Response
     {
         if ($request->getMethod() === 'POST') {

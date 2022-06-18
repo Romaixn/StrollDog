@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Place\Service\Search;
 
-use App\Domain\Place\Entity\Place;
-use App\Domain\Place\Repository\PlaceRepository;
 use App\Domain\Place\Service\Search\Model\Search;
+use FOS\ElasticaBundle\Finder\TransformedFinder;
 
-class SearchPlace
+final class SearchPlace
 {
-    public function __construct(private PlaceRepository $placeRepository)
+    public function __construct(private TransformedFinder $placesFinder)
     {
     }
 
@@ -19,6 +18,6 @@ class SearchPlace
      */
     public function search(Search $search): mixed
     {
-        return $this->placeRepository->search($search);
+        return $this->placesFinder->find($search);
     }
 }

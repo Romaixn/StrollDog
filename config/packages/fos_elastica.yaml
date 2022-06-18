@@ -1,0 +1,19 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        places:
+            properties:
+                title: ~
+                description: ~
+                address: ~
+                city: ~
+                postalCode: ~
+                country: ~
+                ratings: ~
+                influx: ~
+                types: ~
+            persistence:
+                driver: orm
+                model: App\Domain\Place\Entity\Place
