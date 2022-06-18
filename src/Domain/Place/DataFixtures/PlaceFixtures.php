@@ -35,15 +35,15 @@ class PlaceFixtures extends Fixture
                 ->setDescription($faker->realText())
                 ->setAddress($faker->streetAddress())
                 ->setCity($faker->city())
-                /** @phpstan-ignore-next-line */
+                /* @phpstan-ignore-next-line */
                 ->setPostalCode((string) $faker->departmentNumber())
                 ->setCountry($faker->country())
                 ->setLongitude($faker->longitude())
                 ->setLatitude($faker->latitude())
                 ->setRatings($faker->randomFloat(2, 0, 5))
-                /** @phpstan-ignore-next-line */
+                /* @phpstan-ignore-next-line */
                 ->setInflux($faker->randomElement([Influx::Low->name, Influx::Medium->name, Influx::High->name]))
-                /** @phpstan-ignore-next-line */
+                /* @phpstan-ignore-next-line */
                 ->addType($faker->randomElement([$ville, $foret, $champ]))
             ;
 

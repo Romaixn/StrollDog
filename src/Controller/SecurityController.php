@@ -21,12 +21,12 @@ final class SecurityController extends AbstractInertiaController
 
         $errors = $authenticationUtils->getLastAuthenticationError();
 
-        if($errors) {
+        if ($errors) {
             $this->addFlash('error', $translator->trans($errors->getMessage()));
         }
 
         return $this->renderWithInertia('Login', [
-            'last_username' => $authenticationUtils->getLastUsername()
+            'last_username' => $authenticationUtils->getLastUsername(),
         ]);
     }
 

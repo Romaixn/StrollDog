@@ -8,7 +8,6 @@ use App\Domain\Place\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 class Type

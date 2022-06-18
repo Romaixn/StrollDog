@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Domain\Place\Enum\Influx;
-use function Symfony\Component\String\s;
+use App\Domain\Place\Repository\TypeRepository;
+use App\Domain\Place\Service\Search\Model\Search;
+use App\Domain\Place\Service\Search\SearchPlace;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Domain\Place\Repository\TypeRepository;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Domain\Place\Service\Search\SearchPlace;
-use App\Domain\Place\Service\Search\Model\Search;
+use function Symfony\Component\String\s;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class SearchController extends AbstractInertiaController
@@ -69,19 +69,19 @@ final class SearchController extends AbstractInertiaController
         /** @var string $query */
         $query = $request->request->get('search');
 
-        if($influx !== 'null') {
+        if ($influx !== 'null') {
             $search->setInflux(Influx::tryFrom($influx));
         }
 
-        if($rating !== 'null') {
+        if ($rating !== 'null') {
             $search->setRatings((int) $rating);
         }
 
-        if($type !== 'null' && $type = $this->typeRepository->find($type)) {
+        if ($type !== 'null' && $type = $this->typeRepository->find($type)) {
             $search->setType($type);
         }
 
-        if($query !== 'null') {
+        if ($query !== 'null') {
             $search->setQuery($query);
         }
 

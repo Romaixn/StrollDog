@@ -99,7 +99,7 @@ class ListUsersCommand extends Command
         $output->write($usersAsATable);
 
         if (null !== $email = $input->getOption('send-to')) {
-            /** @phpstan-ignore-next-line */
+            /* @phpstan-ignore-next-line */
             $this->sendReport($usersAsATable, $email);
         }
 

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Traits;
 
 use App\Domain\Security\Entity\User;
-use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
-use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 

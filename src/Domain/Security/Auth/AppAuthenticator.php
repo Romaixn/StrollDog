@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Security\Auth;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,7 +24,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-    ) { }
+    ) {
+    }
 
     public function authenticate(Request $request): Passport
     {

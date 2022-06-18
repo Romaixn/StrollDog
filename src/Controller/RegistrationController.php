@@ -6,18 +6,17 @@ namespace App\Controller;
 
 use App\Domain\Security\Auth\AppAuthenticator;
 use App\Domain\Security\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
-use function Symfony\Component\String\s;
-use Symfony\Component\HttpFoundation\Request;
-use App\Domain\Security\Service\EmailVerifier;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Security\Repository\UserRepository;
-use Symfony\Component\Validator\ConstraintViolationInterface;
+use App\Domain\Security\Service\EmailVerifier;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use function Symfony\Component\String\s;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-
 
 final class RegistrationController extends AbstractInertiaController
 {
@@ -25,10 +24,11 @@ final class RegistrationController extends AbstractInertiaController
         private EmailVerifier $emailVerifier,
         private UserPasswordHasherInterface $passwordHasher,
         private EntityManagerInterface $entityManager,
-    ) { }
+    ) {
+    }
 
-    #[Route('/register', name: 'register', methods: ['GET'] , options: ['expose' => true])]
-    #[Route('/register_store', name: 'register_store', methods: ['POST'] , options: ['expose' => true])]
+    #[Route('/register', name: 'register', methods: ['GET'], options: ['expose' => true])]
+    #[Route('/register_store', name: 'register_store', methods: ['POST'], options: ['expose' => true])]
     public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator): Response|null
     {
         if ($request->getMethod() === 'POST') {
@@ -36,7 +36,7 @@ final class RegistrationController extends AbstractInertiaController
 
             $errors = $this->handleFormData($request, $user, 'User created.');
 
-            if(count($errors) === 0) {
+            if (\count($errors) === 0) {
                 // generate a signed url and email it to the user
                 // $this->emailVerifier->sendEmailConfirmation(
                 //     'verify_email',
@@ -96,11 +96,11 @@ final class RegistrationController extends AbstractInertiaController
      */
     private function handleFormData(Request $request, User $user, string $successMessage): array
     {
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         $user->setUsername($request->request->get('username'));
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         $user->setEmail($request->request->get('email'));
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         $user->setName($request->request->get('name'));
         $user->setIsVerified(true);
 
@@ -115,7 +115,7 @@ final class RegistrationController extends AbstractInertiaController
 
         $violations = $this->validator->validate($user);
 
-        if($violations->count() === 0) {
+        if ($violations->count() === 0) {
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
