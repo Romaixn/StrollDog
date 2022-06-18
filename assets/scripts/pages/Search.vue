@@ -2,28 +2,28 @@
     <main>
         <h1 class="mb-8 font-bold text-3xl">Rechercher un lieu</h1>
         <FormKit type="form" form-class="grid grid-cols-9 gap-6" :actions="false" @submit="submit">
-            <div class="col-span-7 sm:col-span-2">
+            <div class="col-span-9 md:col-span-2">
                 <FormKit label="Recherche" type="text" v-model="form.search" />
             </div>
-            <div class="col-span-7 sm:col-span-2">
+            <div class="col-span-9 md:col-span-2">
                 <FormKit label="Note" type="number" min="1" max="5" v-model="form.rating" />
             </div>
-            <div class="col-span-7 sm:col-span-2">
+            <div class="col-span-9 md:col-span-2">
                 <FormKit label="Type de lieu" type="select" placeholder="Choisir un type" v-model="form.type" :options="types" />
             </div>
-            <div class="col-span-7 sm:col-span-2">
+            <div class="col-span-9 md:col-span-2">
                 <FormKit label="Affluence" type="select" placeholder="Choisir une catégorie" v-model="form.influx" :options="influx" />
             </div>
-            <div class="col-span-7 sm:col-span-1 flex items-end">
+            <div class="col-span-9 md:col-span-1 flex items-end">
                 <FormKit label="Rechercher" type="submit" />
             </div>
         </FormKit>
 
-        <div class="places-container">
-            <div class="place" v-for="place in places">
+        <div class="grid grid-cols-1 divide-y">
+            <div class="place p-2" v-for="place in places">
                 <div class="place-header">
                     <h2 class="place-title">{{ place.title }}</h2>
-                    <p>{{ place.description }}</p>
+                    <p v-html="place.description"></p>
                 </div>
             </div>
         </div>

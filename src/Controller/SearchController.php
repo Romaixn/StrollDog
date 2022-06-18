@@ -22,8 +22,8 @@ final class SearchController extends AbstractInertiaController
     ) {
     }
 
-    #[Route('/research', name: 'search', methods: ['GET'], options: ['expose' => true])]
-    #[Route('/research', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
+    #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
+    #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
     public function index(Request $request, TranslatorInterface $translator): Response
     {
         if ($request->getMethod() === 'POST') {
@@ -66,6 +66,8 @@ final class SearchController extends AbstractInertiaController
         $influx = $request->request->get('influx');
         /** @var string $type */
         $type = $request->request->get('type');
+        /** @var string $query */
+        $query = $request->request->get('search');
 
         if($influx !== 'null') {
             $search->setInflux(Influx::tryFrom($influx));
@@ -79,10 +81,13 @@ final class SearchController extends AbstractInertiaController
             $search->setType($type);
         }
 
+        if($query !== 'null') {
+            $search->setQuery($query);
+        }
+
         $violations = $this->validator->validate($search);
 
         if ($violations->count() === 0) {
-            dump($this->searchPlace->search($search));
             return [$this->searchPlace->search($search), []];
         }
 
