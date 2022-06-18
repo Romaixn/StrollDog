@@ -52,6 +52,10 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 cc: c=c:c ## Clear the cache
 cc: sf
 
+## —— elasticsearch 🔎 —————————————————————————————————————————————————————————
+populate: ## Reset and populate the Elasticsearch index
+	@$(SYMFONY) fos:elastica:populate
+
 ## —— PHPUnit 🧪 ———————————————————————————————————————————————————————————————
 test: export APP_ENV=test
 test: ## Run PHPUnit tests
