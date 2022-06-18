@@ -30,9 +30,7 @@ class PlaceRepository extends ServiceEntityRepository
     public function search(Search $search): mixed
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.influx = :influx')
             ->andWhere('p.ratings >= :ratings')
-            ->setParameter('influx', $search->getInflux())
             ->setParameter('ratings', $search->getRatings())
             ->getQuery()
             ->getResult()

@@ -20,6 +20,8 @@ class Search
     #[Assert\Choice([0, 1, 2, 3, 4, 5])]
     private ?int $ratings = null;
 
+    private ?string $query = null;
+
     public function getType(): ?Type
     {
         return $this->type;
@@ -52,6 +54,18 @@ class Search
     public function setRatings(?int $ratings): self
     {
         $this->ratings = $ratings;
+
+        return $this;
+    }
+
+    public function getQuery(): ?string
+    {
+        return $this->query;
+    }
+
+    public function setQuery(?string $query): self
+    {
+        $this->query = $query;
 
         return $this;
     }

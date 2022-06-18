@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use RuntimeException;
-use InvalidArgumentException;
 use App\Domain\Place\Enum\Influx;
 use function Symfony\Component\String\s;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Place\Service\Search\SearchPlace;
 use App\Domain\Place\Service\Search\Model\Search;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 final class SearchController extends AbstractInertiaController
 {
     public function __construct(
-        /** @phpstan-ignore-next-line */
         private SearchPlace $searchPlace,
         private TypeRepository $typeRepository
     ) {
@@ -40,7 +36,7 @@ final class SearchController extends AbstractInertiaController
         foreach (Influx::cases() as $influx) {
             $influxChoices[] = [
                 'label' => $translator->trans($influx->value),
-                'value' => $influx->name,
+                'value' => $influx->value,
             ];
         }
         $typeChoices = [];
@@ -64,11 +60,30 @@ final class SearchController extends AbstractInertiaController
      */
     private function handleFormData(Request $request, Search $search): array
     {
-        dd($request->request->get('rating'), $request->request->get('type'), $request->request->get('influx'));
-        /** @phpstan-ignore-next-line */
-        $search->setInflux(Influx::tryFrom($request->request->get('influx')));
-        $search->setRatings($request->request->get('rating'));
-        $search->setType($request->request->get('types') ? $this->typeRepository->find($request->request->get('types')) : null);
+        /** @var int $rating */
+        $rating = $request->request->get('rating');
+        /** @var string $influx */
+        $influx = $request->request->get('influx');
+        /** @var string $type */
+        $type = $request->request->get('type');
+        /** @var string $query */
+        $query = $request->request->get('search');
+
+        if($influx !== 'null') {
+            $search->setInflux(Influx::tryFrom($influx));
+        }
+
+        if($rating !== 'null') {
+            $search->setRatings((int) $rating);
+        }
+
+        if($type !== 'null' && $type = $this->typeRepository->find($type)) {
+            $search->setType($type);
+        }
+
+        if($query !== 'null') {
+            $search->setQuery($query);
+        }
 
         $violations = $this->validator->validate($search);
 

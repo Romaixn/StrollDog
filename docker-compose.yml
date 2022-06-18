@@ -95,6 +95,29 @@ services:
       retries: 3
       start_period: 30s
 
+  elasticsearch:
+    container_name: strolldog-elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+    ports:
+      - 9209:9200
+    environment:
+      - "discovery.type=single-node"
+      - "bootstrap.memory_lock=true"
+      - "ES_JAVA_OPTS=-Xms1G -Xmx1G"
+      - "xpack.security.enabled=false"
+      - "http.cors.enabled=true"
+      - "http.cors.allow-origin=*"
+
+  kibana:
+    container_name: strolldog-kibana
+    depends_on:
+      - elasticsearch
+    image: docker.elastic.co/kibana/kibana:7.17.4
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+
 volumes:
   php_socket:
   caddy_data:
