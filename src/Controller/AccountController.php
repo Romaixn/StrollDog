@@ -7,11 +7,11 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class HomeController extends AbstractInertiaController
+final class AccountController extends AbstractInertiaController
 {
-    #[Route('/', name: 'home', methods: ['GET'], options: ['expose' => true]) ]
+    #[Route('/account', name: 'account', methods: ['GET'], options: ['expose' => true]) ]
     public function index(): Response
     {
-        return $this->renderWithInertia('Home');
+        return $this->renderWithInertia('Account');
     }
 }

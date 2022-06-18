@@ -22,7 +22,7 @@
           <inertia-link v-if="!isConnected" :href="route('login')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Se connecter </inertia-link>
           <a v-if="!isConnected" :href="route('register')" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </a>
           <a v-if="isAdmin" :href="route('admin')" class="mr-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Tableau de bord </a>
-          <a v-if="isConnected" href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Mon compte </a>
+          <a v-if="isConnected" :href="route('account')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Mon compte </a>
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
                 {{ ' ' }}
                 <inertia-link :href="route('login')" class="text-indigo-600 hover:text-indigo-500"> Se connecter </inertia-link>
               </p>
-              <a v-if="isConnected" href="#" class="text-indigo-600 hover:text-indigo-500"> Mon compte </a>
+              <a v-if="isConnected" :href="route('account')" class="text-indigo-600 hover:text-indigo-500"> Mon compte </a>
             </div>
           </div>
         </div>
