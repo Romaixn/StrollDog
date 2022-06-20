@@ -14,6 +14,7 @@ framework:
                     multiplier: 2
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
+            elastica: '%env(MESSENGER_TRANSPORT_DSN)%?queue_name=elastica'
 
         routing:
             Symfony\Component\Mailer\Messenger\SendEmailMessage: async
