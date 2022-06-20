@@ -60,8 +60,6 @@ final class SearchController extends AbstractInertiaController
      */
     private function handleFormData(Request $request, Search $search): array
     {
-        /** @var int $rating */
-        $rating = $request->request->get('rating');
         /** @var string $influx */
         $influx = $request->request->get('influx');
         /** @var string $type */
@@ -71,10 +69,6 @@ final class SearchController extends AbstractInertiaController
 
         if ($influx !== 'null') {
             $search->setInflux(Influx::tryFrom($influx));
-        }
-
-        if ($rating !== 'null') {
-            $search->setRatings((int) $rating);
         }
 
         if ($type !== 'null' && $type = $this->typeRepository->find($type)) {

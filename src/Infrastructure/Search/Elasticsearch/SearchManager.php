@@ -33,12 +33,6 @@ class SearchManager implements SearchInterface
             $boolQuery->addMust($influxQuery);
         }
 
-        if ($search->getRatings()) {
-            $ratingsQuery = new Range();
-            $ratingsQuery->addField('ratings', ['gte' => $search->getRatings()]);
-            $boolQuery->addMust($ratingsQuery);
-        }
-
         if ($search->getQuery()) {
             $searchQuery = new MatchQuery();
             $searchQuery->setFieldQuery('title', $search->getQuery());

@@ -16,10 +16,6 @@ class Search
     #[Assert\Type("App\Domain\Place\Enum\Influx")]
     private ?Influx $influx = null;
 
-    #[Assert\PositiveOrZero()]
-    #[Assert\Choice([0, 1, 2, 3, 4, 5])]
-    private ?int $ratings = null;
-
     private ?string $query = null;
 
     public function getType(): ?Type
@@ -42,18 +38,6 @@ class Search
     public function setInflux(?Influx $influx): self
     {
         $this->influx = $influx;
-
-        return $this;
-    }
-
-    public function getRatings(): ?int
-    {
-        return $this->ratings;
-    }
-
-    public function setRatings(?int $ratings): self
-    {
-        $this->ratings = $ratings;
 
         return $this;
     }

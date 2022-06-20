@@ -24,19 +24,6 @@ class PlaceRepository extends ServiceEntityRepository
         parent::__construct($registry, Place::class);
     }
 
-    /**
-     * @return mixed Returns an array of Place objects
-     */
-    public function search(Search $search): mixed
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.ratings >= :ratings')
-            ->setParameter('ratings', $search->getRatings())
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     // /**
     //  * @return Place[] Returns an array of Place objects
     //  */

@@ -1,12 +1,9 @@
 <template>
     <main>
         <h1 class="mb-8 font-bold text-3xl">Rechercher un lieu</h1>
-        <FormKit type="form" form-class="grid grid-cols-9 gap-6" :actions="false" @submit="submit">
+        <FormKit type="form" form-class="grid grid-cols-7 gap-6" :actions="false" @submit="submit">
             <div class="col-span-9 md:col-span-2">
                 <FormKit label="Recherche" type="text" v-model="form.search" />
-            </div>
-            <div class="col-span-9 md:col-span-2">
-                <FormKit label="Note" type="number" min="1" max="5" v-model="form.rating" />
             </div>
             <div class="col-span-9 md:col-span-2">
                 <FormKit label="Type de lieu" type="select" placeholder="Choisir un type" v-model="form.type" :options="types" />
@@ -46,7 +43,6 @@ export default {
             sending: false,
             form: {
                 influx: null,
-                rating: null,
                 type: null,
                 search: null
             },
@@ -58,7 +54,6 @@ export default {
             const data = new FormData()
 
             data.append('influx', this.form.influx || null)
-            data.append('rating', this.form.rating || null)
             data.append('type', this.form.type || null)
             data.append('search', this.form.search || null)
 
