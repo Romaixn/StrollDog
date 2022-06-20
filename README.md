@@ -193,7 +193,5 @@ Project Link: [https://github.com/Romaixn/StrollDog](https://github.com/Romaixn/
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements
 
-Use this section to mention useful resources and libraries that you have used in your projects.
-
  - [Docker template](https://github.com/dunglas/symfony-docker)
  - [Inertia](https://inertiajs.com/)
