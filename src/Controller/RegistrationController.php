@@ -34,7 +34,7 @@ final class RegistrationController extends AbstractInertiaController
         if ($request->getMethod() === 'POST') {
             $user = new User();
 
-            $errors = $this->handleFormData($request, $user, 'User created.');
+            $errors = $this->handleFormData($request, $user, 'Bienvenue !');
 
             if (\count($errors) === 0) {
                 // generate a signed url and email it to the user
