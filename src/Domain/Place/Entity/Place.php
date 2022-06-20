@@ -21,7 +21,7 @@ class Place
     private string $title;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $description;
+    private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $address;
@@ -33,19 +33,19 @@ class Place
     private string $postalCode;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $country;
+    private ?string $country = null;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $longitude;
+    private ?float $longitude = null;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $latitude;
+    private ?float $latitude = null;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $ratings;
+    private ?float $ratings = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $influx;
+    private ?string $influx = null;
 
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'places')]
     /** @phpstan-ignore-next-line */

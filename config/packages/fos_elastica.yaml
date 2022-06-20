@@ -17,3 +17,4 @@ fos_elastica:
             persistence:
                 driver: orm
                 model: App\Domain\Place\Entity\Place
+                listener: ~
