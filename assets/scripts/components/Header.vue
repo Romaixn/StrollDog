@@ -20,9 +20,32 @@
         </nav>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <inertia-link v-if="!isConnected" :href="route('login')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Se connecter </inertia-link>
-          <a v-if="!isConnected" :href="route('register')" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </a>
-          <a v-if="isAdmin" :href="route('admin')" class="mr-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Tableau de bord </a>
-          <a v-if="isConnected" :href="route('account')" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Mon compte </a>
+          <inertia-link v-if="!isConnected" :href="route('register')" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </inertia-link>
+          <!-- Profile dropdown -->
+          <Menu v-if="isConnected" as="div" class="ml-3 relative">
+            <div>
+              <MenuButton class="text-gray-500 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <span class="sr-only">Ouvrir le menu utilisateur</span>
+                <UserCircleIcon class="h-8 w-8 rounded-full" aria-hidden="true" />
+              </MenuButton>
+            </div>
+            <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+              <MenuItems class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <MenuItem v-if="isAdmin" v-slot="{ active }">
+                  <a :href="route('admin')" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Tableau de bord</a>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                  <inertia-link :href="route('account')" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Mon compte</inertia-link>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                  <inertia-link href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Paramètres</inertia-link>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                  <inertia-link :href="route('logout')" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Se déconnecter</inertia-link>
+                </MenuItem>
+              </MenuItems>
+            </transition>
+          </Menu>
         </div>
       </div>
     </div>
@@ -47,16 +70,16 @@
             <nav class="grid gap-y-8">
               <inertia-link @click="close(close)" :href="route('home')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Accueil </inertia-link>
               <inertia-link @click="close(close)" :href="route('search')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Recherche </inertia-link>
-              <inertia-link v-if="isAdmin" @click="close(close)" :href="route('admin')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Tableau de bord </inertia-link>
+              <a v-if="isAdmin" @click="close(close)" :href="route('admin')" class="-m-3 p-3 rounded-md hover:bg-gray-50 text-base font-medium text-gray-900 hover:text-gray-700"> Tableau de bord </a>
             </nav>
             <div>
-              <a v-if="!isConnected" :href="route('register')" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </a>
+              <inertia-link v-if="!isConnected" :href="route('register')" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> S'inscrire </inertia-link>
               <p v-if="!isConnected" class="mt-6 text-center text-base font-medium text-gray-500">
                 Déjà utilisateur ?
                 {{ ' ' }}
                 <inertia-link :href="route('login')" class="text-indigo-600 hover:text-indigo-500"> Se connecter </inertia-link>
               </p>
-              <a v-if="isConnected" :href="route('account')" class="text-indigo-600 hover:text-indigo-500"> Mon compte </a>
+              <inertia-link v-if="isConnected" :href="route('account')" class="text-indigo-600 hover:text-indigo-500"> Mon compte </inertia-link>
             </div>
           </div>
         </div>
@@ -66,10 +89,11 @@
 </template>
 
 <script setup>
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
+import { Popover, PopoverButton, PopoverPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import {
   MenuIcon,
   XIcon,
+  UserCircleIcon
 } from '@heroicons/vue/outline'
 
 const logo = require('@img/paw.svg');

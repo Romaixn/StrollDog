@@ -3,7 +3,7 @@
         <h1 class="mb-8 font-bold text-3xl">Rechercher un lieu</h1>
         <FormKit type="form" form-class="grid grid-cols-7 gap-6" :actions="false" @submit="submit">
             <div class="col-span-9 md:col-span-2">
-                <FormKit label="Recherche" type="text" v-model="form.search" />
+                <FormKit label="Recherche" type="search" v-model="form.search" />
             </div>
             <div class="col-span-9 md:col-span-2">
                 <FormKit label="Type de lieu" type="select" placeholder="Choisir un type" v-model="form.type" :options="types" />
@@ -33,6 +33,8 @@ import Layout from '@/layouts/Front'
 export default {
     metaInfo: { title: 'Rechercher un lieu' },
     layout: Layout,
+    components:  {
+    },
     props: {
         types: Array,
         influx: Array,
@@ -62,6 +64,9 @@ export default {
                 onFinish: () => this.sending = false,
             })
         },
+        suggest() {
+            console.log(this.form.search);
+        }
     }
 }
 </script>
