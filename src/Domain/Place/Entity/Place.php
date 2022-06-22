@@ -8,6 +8,7 @@ use App\Domain\Place\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 class Place
@@ -18,18 +19,23 @@ class Place
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $title;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $address;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $city;
 
     #[ORM\Column(type: 'string', length: 5)]
+    #[Assert\NotBlank]
+    #[Assert\Length(exactly: 5, exactMessage: 'The length must be {{ limit }} characters.')]
     private string $postalCode;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
