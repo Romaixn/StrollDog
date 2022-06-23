@@ -25,7 +25,7 @@ final class GeoApi implements GeoApiInterface
         $data = $response->toArray(true);
 
         if (empty($data['features'])) {
-            throw new \Exception('No results');
+            throw new \Exception('Could not get coordinates from address');
         }
 
         $longitude = $data['features'][0]['geometry']['coordinates'][0];

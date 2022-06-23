@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\Place\Repository;
 
 use App\Domain\Place\Entity\Place;
-use App\Domain\Place\Service\Search\Model\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

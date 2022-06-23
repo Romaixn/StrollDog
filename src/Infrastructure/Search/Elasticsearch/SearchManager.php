@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Search\Elasticsearch;
 
-use Elastica\Query\Range;
+use App\Domain\Place\Service\Search\Model\Search;
+use App\Infrastructure\Search\SearchInterface;
 use Elastica\Query\BoolQuery;
 use Elastica\Query\MatchQuery;
-use App\Infrastructure\Search\SearchInterface;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
-use App\Domain\Place\Service\Search\Model\Search;
 
 class SearchManager implements SearchInterface
 {
