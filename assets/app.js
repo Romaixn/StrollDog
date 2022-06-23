@@ -18,6 +18,7 @@ const FormKit = plugin
 
 createInertiaApp({
   resolve: name => import(`@/pages/${name}`),
+  title: title => `${title} - StrollDog`,
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .component('inertia-link', InertiaLink)

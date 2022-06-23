@@ -1,4 +1,6 @@
 <template>
+    <Head title="Accueil" />
+
     <main>
         <h1 class="mb-8 font-bold text-3xl">Accueil</h1>
     </main>
@@ -6,9 +8,12 @@
 
 <script>
 import Layout from '@/layouts/Front'
+import { Head } from '@inertiajs/inertia-vue3'
 
 export default {
-    metaInfo: { title: 'Accueil' },
     layout: Layout,
+    components: {
+        Head
+    }
 }
 </script>

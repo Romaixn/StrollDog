@@ -1,4 +1,6 @@
 <template>
+    <Head title="S'inscrire" />
+
     <main>
         <h1 class="mb-8 font-bold text-3xl">Inscription</h1>
 
@@ -14,10 +16,14 @@
 
 <script>
 import Layout from '@/layouts/Front'
+import { Head } from '@inertiajs/inertia-vue3'
 
 export default {
     metaInfo: { title: 'Registration' },
     layout: Layout,
+    components:  {
+        Head
+    },
     props: {
         errors: Object
     },

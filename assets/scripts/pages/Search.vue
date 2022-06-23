@@ -1,4 +1,6 @@
 <template>
+    <Head title="Recherche" />
+
     <main>
         <h1 class="mb-8 font-bold text-3xl">Rechercher un lieu</h1>
         <FormKit type="form" form-class="grid grid-cols-7 gap-6" :actions="false" @submit="submit">
@@ -29,11 +31,13 @@
 
 <script>
 import Layout from '@/layouts/Front'
+import { Head } from '@inertiajs/inertia-vue3'
 
 export default {
     metaInfo: { title: 'Rechercher un lieu' },
     layout: Layout,
     components:  {
+        Head
     },
     props: {
         types: Array,
