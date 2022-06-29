@@ -31,6 +31,15 @@ class PlaceRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function getNumberCity(): mixed
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(DISTINCT(p.city))')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
     // /**
     //  * @return Place[] Returns an array of Place objects
     //  */

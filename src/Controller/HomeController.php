@@ -16,10 +16,14 @@ final class HomeController extends AbstractInertiaController
     {
         $placeCount = $placeRepository->getNumber();
         $userCount = $userRepository->getNumber();
+        $cityCount = $placeRepository->getNumberCity();
+        dump($placeCount);
+        dump($cityCount);
 
         return $this->renderWithInertia('Home', [
             'placeCount' => $placeCount,
             'userCount' => $userCount,
+            'cityCount' => $cityCount
         ]);
     }
 }

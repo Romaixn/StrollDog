@@ -34,7 +34,7 @@ final class PlaceCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Place')
             ->setEntityLabelInPlural('Places')
-            ->setSearchFields(['title', 'types.name'])
+            ->setSearchFields(['title', 'types.name', 'city', 'postalCode'])
         ;
     }
 

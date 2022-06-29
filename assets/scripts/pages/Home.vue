@@ -167,12 +167,17 @@ export default {
         const metrics = [
             { id: 1, stat: props.placeCount + '+', emphasis: 'Lieux', rest: 'disponible sur StrollDog.' },
             { id: 2, stat: props.userCount + '+', emphasis: 'Utilisateurs', rest: 'actifs sur la plateforme.' },
+            { id: 3, stat: props.cityCount + '+', emphasis: 'Villes', rest: 'où des lieux sont renseignés.' },
         ]
 
         return { hero, stats, metrics }
     },
     props: {
         placeCount: {
+            type: Number,
+            default: 0,
+        },
+        cityCount: {
             type: Number,
             default: 0,
         },
