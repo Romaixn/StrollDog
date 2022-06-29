@@ -40,6 +40,12 @@ createInertiaApp({
             },
             submit: {
               input: 'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            },
+            checkbox: {
+              outer: 'mb-0',
+              wrapper: 'flex items-center',
+              label: 'ml-2 block text-sm text-gray-900',
+              input: 'mt-0 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded'
             }
           })
         },

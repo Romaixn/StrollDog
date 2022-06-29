@@ -6,7 +6,6 @@ namespace App\Action;
 
 use App\Domain\Place\Service\GeoApi\GeoApiInterface;
 use App\Infrastructure\Notification\NotificationService;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]

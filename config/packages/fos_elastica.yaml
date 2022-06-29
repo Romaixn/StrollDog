@@ -5,6 +5,7 @@ fos_elastica:
     indexes:
         places:
             properties:
+                id: ~
                 title: ~
                 description: ~
                 address: ~

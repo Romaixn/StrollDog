@@ -18,13 +18,16 @@
             </div>
         </FormKit>
 
-        <div class="grid grid-cols-1 divide-y">
+        <div v-if="places.length" class="grid grid-cols-1 divide-y">
             <div class="place p-2" v-for="place in places">
                 <div class="place-header">
-                    <h2 class="place-title">{{ place.title }}</h2>
+                    <h2 class="place-title"><inertia-link :href="route('place', place.id)">{{ place.title }}</inertia-link></h2>
                     <p v-html="place.description"></p>
                 </div>
             </div>
+        </div>
+        <div v-else class="text-center">
+            <p>Aucun résultat</p>
         </div>
     </main>
 </template>

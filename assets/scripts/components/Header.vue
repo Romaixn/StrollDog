@@ -1,7 +1,7 @@
 <template>
-  <Popover class="relative bg-white">
+  <Popover class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+      <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <inertia-link :href="route('home')">
             <span class="sr-only">StrollDog</span>

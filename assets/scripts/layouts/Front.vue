@@ -1,19 +1,22 @@
 <template>
     <div>
         <Header :isConnected="auth.user !== null" :isAdmin="auth.user?.role.includes('ROLE_ADMIN')" />
-        <main class="container mx-auto px-4 mt-4">
+        <main>
             <slot />
         </main>
+        <Footer />
     </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { useToast } from 'vue-toastification'
 
 export default {
     components: {
-        Header
+        Header,
+        Footer
     },
     props: {
         auth: {

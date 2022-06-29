@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Domain\Place\Enum\Influx;
+use App\Domain\Place\Repository\PlaceRepository;
 use App\Domain\Place\Repository\TypeRepository;
 use App\Domain\Place\Service\Search\Model\Search;
 use App\Domain\Place\Service\Search\SearchPlace;
@@ -24,7 +25,7 @@ final class SearchController extends AbstractInertiaController
 
     #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
     #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]
-    public function index(Request $request, TranslatorInterface $translator): Response
+    public function index(Request $request, TranslatorInterface $translator, PlaceRepository $placeRepository): Response
     {
         if ($request->getMethod() === 'POST') {
             $search = new Search();
@@ -46,6 +47,8 @@ final class SearchController extends AbstractInertiaController
                 'value' => $type->getId(),
             ];
         }
+
+        $places = $places ?? $placeRepository->findAll();
 
         return $this->renderWithInertia('Search', [
             'places' => isset($places) ? $places : [],

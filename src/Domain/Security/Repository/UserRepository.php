@@ -40,6 +40,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function getNumber(): mixed
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

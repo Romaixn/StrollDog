@@ -23,6 +23,14 @@ class PlaceRepository extends ServiceEntityRepository
         parent::__construct($registry, Place::class);
     }
 
+    public function getNumber(): mixed
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Place[] Returns an array of Place objects
     //  */
