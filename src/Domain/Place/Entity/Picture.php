@@ -19,7 +19,8 @@ class Picture
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $image;
+    /* @phpstan-ignore-next-line */
+    private $image;
 
     #[Vich\UploadableField(mapping: 'place_images', fileNameProperty: 'image')]
     private ?File $imageFile;

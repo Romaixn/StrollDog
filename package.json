@@ -15,6 +15,7 @@
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^2.1.0",
         "@tailwindcss/forms": "^0.5.2",
+        "@tailwindcss/line-clamp": "^0.4.0",
         "autoprefixer": "^10.4.2",
         "core-js": "^3.0.0",
         "husky": "^8.0.0",

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Place\Repository\PlaceRepository;
 use App\Domain\Security\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 final class HomeController extends AbstractInertiaController
 {
@@ -30,7 +30,7 @@ final class HomeController extends AbstractInertiaController
         return $this->renderWithInertia('Home', [
             'placeCount' => $placeCount,
             'userCount' => $userCount,
-            'cityCount' => $cityCount
+            'cityCount' => $cityCount,
         ]);
     }
 }

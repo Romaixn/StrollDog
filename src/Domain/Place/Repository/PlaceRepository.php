@@ -39,7 +39,6 @@ class PlaceRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-
     // /**
     //  * @return Place[] Returns an array of Place objects
     //  */

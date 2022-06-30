@@ -61,10 +61,14 @@ class Place
     /** @phpstan-ignore-next-line */
     private $pictures;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -257,6 +261,18 @@ class Place
                 $picture->setPlace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
