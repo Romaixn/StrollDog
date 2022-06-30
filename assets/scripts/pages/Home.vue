@@ -116,7 +116,7 @@
               <span class="bg-gradient-to-r from-purple-300 to-indigo-300 bg-clip-text text-transparent">Statistiques</span>
             </h2>
             <p class="mt-3 text-3xl font-extrabold text-white">Disponible sur la plateforme</p>
-            <p class="mt-5 text-lg text-gray-300">Découvrez ce qui est disponible sur la plateforme, dès maintenant.</p>
+            <p class="mt-5 text-lg text-gray-300">De nombreux lieux sont déjà disponibles sur StrollDog, n'attendez plus pour ajouter les vôtres !</p>
             <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
               <p v-for="item in metrics" :key="item.id">
                 <span class="block text-2xl font-bold text-white">{{ item.stat }}</span>
@@ -165,9 +165,9 @@ export default {
         const stats = require('@img/dog-walk-2.jpg');
 
         const metrics = [
-            { id: 1, stat: props.placeCount + '+', emphasis: 'Lieux', rest: 'disponible sur StrollDog.' },
-            { id: 2, stat: props.userCount + '+', emphasis: 'Utilisateurs', rest: 'actifs sur la plateforme.' },
-            { id: 3, stat: props.cityCount + '+', emphasis: 'Villes', rest: 'où des lieux sont renseignés.' },
+            { id: 1, stat: props.placeCount + '+', emphasis: 'Lieux', rest: 'disponible.' },
+            { id: 2, stat: props.userCount + '+', emphasis: 'Utilisateurs', rest: 'actifs.' },
+            { id: 3, stat: props.cityCount + '+', emphasis: 'Villes', rest: 'différentes.' },
         ]
 
         return { hero, stats, metrics }

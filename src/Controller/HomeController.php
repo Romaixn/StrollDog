@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Domain\Place\Repository\PlaceRepository;
-use App\Domain\Security\Repository\UserRepository;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Place\Repository\PlaceRepository;
+use App\Domain\Security\Repository\UserRepository;
 
 final class HomeController extends AbstractInertiaController
 {
     #[Route('/', name: 'home', methods: ['GET'], options: ['expose' => true]) ]
-    public function index(PlaceRepository $placeRepository, UserRepository $userRepository): Response
+    public function index(CacheInterface $cache, PlaceRepository $placeRepository, UserRepository $userRepository): Response
     {
-        $placeCount = $placeRepository->getNumber();
-        $userCount = $userRepository->getNumber();
-        $cityCount = $placeRepository->getNumberCity();
-        dump($placeCount);
-        dump($cityCount);
+        $placeCount = $cache->get('home_place_count', function () use ($placeRepository) {
+            return $placeRepository->getNumber();
+        });
+
+        $userCount = $cache->get('home_user_count', function () use ($userRepository) {
+            return $userRepository->getNumber();
+        });
+
+        $cityCount = $cache->get('home_city_count', function () use ($placeRepository) {
+            return $placeRepository->getNumberCity();
+        });
 
         return $this->renderWithInertia('Home', [
             'placeCount' => $placeCount,
