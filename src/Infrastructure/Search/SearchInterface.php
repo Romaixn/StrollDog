@@ -9,4 +9,6 @@ use App\Domain\Place\Service\Search\Model\Search;
 interface SearchInterface
 {
     public function search(Search $search): mixed;
+
+    public function getAll(): mixed;
 }

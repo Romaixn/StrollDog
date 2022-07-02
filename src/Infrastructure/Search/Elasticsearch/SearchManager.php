@@ -40,4 +40,9 @@ class SearchManager implements SearchInterface
 
         return $this->placesFinder->find($boolQuery);
     }
+
+    public function getAll(): mixed
+    {
+        return $this->placesFinder->find('');
+    }
 }

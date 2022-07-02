@@ -48,7 +48,7 @@ final class UserCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield TextField::new('username');
         yield EmailField::new('email');
-        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
+        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms();
         /** @var string $path */
         $path = $this->getParameter('app.path.user_images');
         yield ImageField::new('image')->setBasePath($path)->onlyOnDetail();

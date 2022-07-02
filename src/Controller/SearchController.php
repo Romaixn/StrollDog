@@ -40,6 +40,7 @@ final class SearchController extends AbstractInertiaController
                 'value' => $influx->value,
             ];
         }
+
         $typeChoices = [];
         foreach ($this->typeRepository->findAll() as $type) {
             $typeChoices[] = [
@@ -48,7 +49,7 @@ final class SearchController extends AbstractInertiaController
             ];
         }
 
-        $places = $places ?? $placeRepository->findAll();
+        $places = $places ?? $this->searchPlace->getAll();
 
         return $this->renderWithInertia('Search', [
             'places' => isset($places) ? $places : [],

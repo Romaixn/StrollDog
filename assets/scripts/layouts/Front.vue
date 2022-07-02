@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :isConnected="auth.user !== null" :isAdmin="auth.user?.role.includes('ROLE_ADMIN')" />
+        <Header :user="auth.user" :isConnected="auth.user !== null" :isAdmin="auth.user?.role.includes('ROLE_ADMIN')" />
         <main>
             <slot />
         </main>

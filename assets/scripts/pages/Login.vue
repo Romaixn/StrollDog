@@ -13,7 +13,7 @@
                     <FormKit type="form" form-class="space-y-6" submit-label="Se connecter" @submit="submit">
                         <div>
                             <FormKit label="Nom d'utilisateur" type="text" validation="required" v-model="form.username"
-                                :errors="errors.username" />
+                                :errors="errors.username" autofocus/>
                         </div>
                         <div>
                             <FormKit label="Mot de passe" name="password" type="password" validation="required"

@@ -6,10 +6,10 @@ fos_elastica:
         places:
             properties:
                 id: ~
-                title: ~
-                description: ~
+                title: { boost: 4 }
+                description: { boost: 2 }
                 address: ~
-                city: ~
+                city: { boost: 3 }
                 postalCode: ~
                 country: ~
                 ratings: ~

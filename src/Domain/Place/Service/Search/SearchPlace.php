@@ -17,4 +17,9 @@ final class SearchPlace
     {
         return $this->finder->search($search);
     }
+
+    public function getAll(): mixed
+    {
+        return $this->finder->getAll();
+    }
 }

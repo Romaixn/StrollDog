@@ -4,7 +4,7 @@
 
     <div class="relative">
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6">
             <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
                 <div class="absolute inset-0">
                     <img class="h-full w-full object-cover" :src="hero" alt="People walking with dogs">
@@ -131,7 +131,7 @@
 
     <div class="bg-white">
         <div
-            class="max-w-4xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:flex lg:items-center lg:justify-between">
+            class="max-w-4xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:flex lg:items-center lg:justify-between">
             <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 <span class="block">Prêt à commencer ?</span>
                 <span

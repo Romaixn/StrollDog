@@ -39,10 +39,14 @@ trait BuildInertiaDefaultPropsTrait
                 'user' => $user !== null
                     ? [
                         'username' => $user->getUsername(),
+                        'email' => $user->getEmail(),
                         'role' => $user->getRoles(),
+                        'name' => $user->getName(),
+                        'avatar' => $user->getImage(),
                     ]
                     : null,
             ],
+            'isConnected' => $user !== null,
             'flash' => [
                 'success' => $flashSuccessMessage,
                 'error' => $flashErrorMessage,
