@@ -84,5 +84,8 @@ final class PlaceCrudController extends AbstractCrudController
         yield CountryField::new('country')->hideOnIndex();
         yield NumberField::new('longitude')->setNumDecimals(6)->onlyOnDetail();
         yield NumberField::new('latitude')->setNumDecimals(6)->onlyOnDetail();
+
+        yield FormField::addPanel('Social');
+        yield AssociationField::new('comments');
     }
 }

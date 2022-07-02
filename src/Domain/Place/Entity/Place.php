@@ -61,6 +61,10 @@ class Place
     /** @phpstan-ignore-next-line */
     private $pictures;
 
+    #[ORM\OneToMany(mappedBy: 'place', targetEntity: Comment::class, orphanRemoval: true)]
+    /** @phpstan-ignore-next-line */
+    private $comments;
+
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
@@ -69,6 +73,7 @@ class Place
         $this->types = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,6 +278,36 @@ class Place
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getPlace() === $this) {
+                $comment->setPlace(null);
+            }
+        }
 
         return $this;
     }
