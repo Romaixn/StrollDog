@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Security\Entity;
 
+use App\Domain\Place\Entity\Place;
 use App\Domain\Security\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -60,6 +63,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /** @phpstan-ignore-next-line */
     private $imageFile;
 
+    #[ORM\OneToMany(mappedBy: 'creator', targetEntity: Place::class)]
+    /** @phpstan-ignore-next-line */
+    private $places;
+
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private \DateTimeImmutable $updatedAt;
 
@@ -69,6 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->places = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,5 +241,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Place>
+     */
+    public function getPlaces(): Collection
+    {
+        return $this->places;
+    }
+
+    public function addPlace(Place $place): self
+    {
+        if (!$this->places->contains($place)) {
+            $this->places[] = $place;
+            $place->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place): self
+    {
+        if ($this->places->removeElement($place)) {
+            // set the owning side to null (unless already changed)
+            if ($place->getCreator() === $this) {
+                $place->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getUserIdentifier();
     }
 }

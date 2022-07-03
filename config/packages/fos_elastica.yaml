@@ -3,7 +3,7 @@ fos_elastica:
     clients:
         default: { url: '%env(ELASTICSEARCH_URL)%' }
     indexes:
-        places:
+        place:
             properties:
                 id: ~
                 title: { boost: 4 }

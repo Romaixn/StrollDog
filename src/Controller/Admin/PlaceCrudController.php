@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -35,6 +36,7 @@ final class PlaceCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Place')
             ->setEntityLabelInPlural('Places')
             ->setSearchFields(['title', 'types.name', 'city', 'postalCode'])
+            ->setDefaultSort(['createdAt' => 'DESC'])
         ;
     }
 
@@ -86,6 +88,9 @@ final class PlaceCrudController extends AbstractCrudController
         yield NumberField::new('latitude')->setNumDecimals(6)->onlyOnDetail();
 
         yield FormField::addPanel('Social');
-        yield AssociationField::new('comments');
+        yield AssociationField::new('creator');
+        yield AssociationField::new('comments')->setFormTypeOption('by_reference', false);
+
+        yield DateField::new('createdAt')->onlyOnIndex();
     }
 }

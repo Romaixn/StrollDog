@@ -9,6 +9,7 @@ use App\Domain\Place\Repository\PlaceRepository;
 use App\Domain\Place\Repository\TypeRepository;
 use App\Domain\Place\Service\Search\Model\Search;
 use App\Domain\Place\Service\Search\SearchPlace;
+use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +21,7 @@ final class SearchController extends AbstractInertiaController
     public function __construct(
         private SearchPlace $searchPlace,
         private TypeRepository $typeRepository
-    ) {
-    }
+    ) { }
 
     #[Route('/search', name: 'search', methods: ['GET'], options: ['expose' => true])]
     #[Route('/search', name: 'search_submit', methods: ['POST'], options: ['expose' => true])]

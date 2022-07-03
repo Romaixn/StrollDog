@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Place\Repository;
 
 use App\Domain\Place\Entity\Comment;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Comment>

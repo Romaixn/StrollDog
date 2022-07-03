@@ -117,7 +117,8 @@
                             <div v-if="isConnected" class="pt-4 border-t border-gray-200">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img class="h-10 w-10 rounded-full"
+                                        <UserCircleIcon v-if="!user.avatar" class="h-10 w-10 rounded-full" aria-hidden="true" />
+                                        <img v-if="user.avatar" class="h-10 w-10 rounded-full"
                                             :src="'/uploads/images/users/' + user.avatar" alt="" />
                                     </div>
                                     <div class="ml-3">

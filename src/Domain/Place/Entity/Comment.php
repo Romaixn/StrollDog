@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Place\Entity;
 
-use App\Domain\Place\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Domain\Security\Entity\User;
+use App\Domain\Place\Repository\CommentRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
@@ -36,6 +37,11 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     /** @phpstan-ignore-next-line */
     private $place;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    /** @phpstan-ignore-next-line */
+    private $creator;
 
     public function getId(): ?int
     {
@@ -94,5 +100,22 @@ class Comment
         $this->place = $place;
 
         return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->content;
     }
 }

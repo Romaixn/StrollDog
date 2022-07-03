@@ -39,6 +39,15 @@ class PlaceRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function findLatest(): mixed
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Place[] Returns an array of Place objects
     //  */

@@ -40,6 +40,10 @@ services:
               # you can also restrict listeners to a specific Doctrine connection
               connection: 'default'
 
+    App\Infrastructure\Search\Elasticsearch\SearchManager:
+        arguments:
+            - '@fos_elastica.finder.place'
+
     FOS\ElasticaBundle\Persister\AsyncPagerPersister:
         arguments:
             - '@fos_elastica.pager_persister_registry'

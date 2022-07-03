@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Place\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use App\Domain\Security\Entity\User;
+use Doctrine\Common\Collections\Collection;
 use App\Domain\Place\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
@@ -54,16 +56,25 @@ class Place
     private ?string $influx = null;
 
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'places')]
+    #[MaxDepth(1)]
     /** @phpstan-ignore-next-line */
     private $types;
 
     #[ORM\OneToMany(mappedBy: 'place', targetEntity: Picture::class, orphanRemoval: true, cascade: ['persist'])]
+    #[MaxDepth(1)]
     /** @phpstan-ignore-next-line */
     private $pictures;
 
     #[ORM\OneToMany(mappedBy: 'place', targetEntity: Comment::class, orphanRemoval: true)]
+    #[MaxDepth(1)]
     /** @phpstan-ignore-next-line */
     private $comments;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'places')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[MaxDepth(1)]
+    /** @phpstan-ignore-next-line */
+    private $creator;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
@@ -308,6 +319,18 @@ class Place
                 $comment->setPlace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

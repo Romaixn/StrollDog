@@ -49,13 +49,13 @@
                         <div class="mt-6 flex items-center">
                             <div class="flex-shrink-0">
                                 <a href="#">
-                                    <span class="sr-only">AUTHOR NAME</span>
+                                    <span class="sr-only">{{ place.creator.name }}</span>
                                 </a>
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-900">
                                     <a href="#" class="hover:underline">
-                                        AUTHOR NAME
+                                        {{ place.creator.name }}
                                     </a>
                                 </p>
                                 <div class="flex space-x-1 text-sm text-gray-500">

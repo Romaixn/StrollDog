@@ -8,11 +8,11 @@ use App\Domain\Place\Service\Search\Model\Search;
 use App\Infrastructure\Search\SearchInterface;
 use Elastica\Query\BoolQuery;
 use Elastica\Query\MatchQuery;
-use FOS\ElasticaBundle\Finder\TransformedFinder;
+use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 
 class SearchManager implements SearchInterface
 {
-    public function __construct(private TransformedFinder $placesFinder)
+    public function __construct(private PaginatedFinderInterface $placesFinder)
     {
     }
 
@@ -38,11 +38,11 @@ class SearchManager implements SearchInterface
             $boolQuery->addMust($searchQuery);
         }
 
-        return $this->placesFinder->find($boolQuery);
+        return $this->placesFinder->findPaginated($boolQuery);
     }
 
     public function getAll(): mixed
     {
-        return $this->placesFinder->find('');
+        return $this->placesFinder->findPaginated('');
     }
 }
